@@ -1,0 +1,24 @@
+.swagger-ui svg:not(:root) {
+    display: none;
+}
+.topbar-wrapper .link:before {
+    content: url('/images/deakin-logo-small.png');
+    height: 40px;
+    object-fit: cover;
+}
+
+/* NATHAN'S SOLUTION */
+/* .topbar-wrapper a.link {
+    content: url("/images/deakin-logo-og.png");
+    height: 60px;
+    max-width: 178px; /* mathematically image defaults to 101x300, therefore ratio of 1:2.97, 2.97 * 60 (the height i want) = 178 
+} */
+
+
+.swagger-ui .topbar .download-url-wrapper .select-label select {
+    border-color: #EF1C25;
+}
+
+.swagger-ui .info .title small:last-child {
+    background-color: #EF1C25 !important;
+}
