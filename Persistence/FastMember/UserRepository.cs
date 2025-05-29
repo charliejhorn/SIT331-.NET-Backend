@@ -1,4 +1,5 @@
 using Npgsql;
+using robot_controller_api.Models;
 
 namespace robot_controller_api.Persistence;
 

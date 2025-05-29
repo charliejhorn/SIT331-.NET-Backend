@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using robot_controller_api.Persistence;
-using Microsoft.AspNetCore.Identity;
+using robot_controller_api.Models;
 using System.Security.Claims;
 
 namespace robot_controller_api.Authentication;

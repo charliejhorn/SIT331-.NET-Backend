@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using robot_controller_api.Persistence;
 using Microsoft.AspNetCore.Authorization;
+using robot_controller_api.Persistence;
 using robot_controller_api.Authentication;
+using robot_controller_api.Models;
 
 namespace robot_controller_api.Controllers;
 

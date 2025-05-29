@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using robot_controller_api.Persistence;
+using robot_controller_api.Models;
 using System.Text.Json;
 using System.Text;
-using Microsoft.AspNetCore.Authorization;
 
 namespace robot_controller_api.Controllers;
 
@@ -48,7 +49,7 @@ public class MapsController : ControllerBase
     public IEnumerable<Map> GetAllSquareMaps()
     {
         List<Map> maps = _mapsRepo.GetMaps();
-        return maps.Where(map => map.IsSquare);
+        return maps.Where(map => map.IsSquare == true);
     }
 
     /// <summary>

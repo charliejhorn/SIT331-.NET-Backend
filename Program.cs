@@ -20,21 +20,36 @@ builder.Services.AddSwaggerGen(options =>
         Title = "Robot Controller API",
         Description = "New backend service that provides resources for the Moon robot simulator.",
         Contact = new OpenApiContact
-            {
-                Name = "Charlie Horn",
-                Email = "s223356097@deakin.edu.au"
-            }
-    }); 
+        {
+            Name = "Charlie Horn",
+            Email = "s223356097@deakin.edu.au"
+        }
+    });
 
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-        options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
-    xmlFilename));
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
+xmlFilename));
 });
 
+
 // enable persistence layer
-builder.Services.AddScoped<IRobotCommandDataAccess, RobotCommandADO>();
-builder.Services.AddScoped<IMapDataAccess, MapRepository>();
-builder.Services.AddScoped<IUserDataAccess, UserRepository>();
+
+// ADO
+// builder.Services.AddScoped<IRobotCommandDataAccess, RobotCommandADO>();
+// builder.Services.AddScoped<IMapDataAccess, MapADO>();
+// builder.Services.AddScoped<IUserDataAccess, UserADO>();
+
+// Repository
+// builder.Services.AddScoped<IRobotCommandDataAccess, RobotCommandRepository>();
+// builder.Services.AddScoped<IMapDataAccess, MapRepository>();
+// builder.Services.AddScoped<IUserDataAccess, UserRepository>();
+
+// Entity Framework
+builder.Services.AddScoped<IRobotCommandDataAccess, RobotCommandEF>();
+builder.Services.AddScoped<IMapDataAccess, MapEF>();
+builder.Services.AddScoped<IUserDataAccess, UserEF>();
+builder.Services.AddScoped<RobotContext>();
+
 
 // provide authentication details
 builder.Services.AddAuthentication("BasicAuthentication")
