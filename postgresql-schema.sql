@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 14.17 (Homebrew)
--- Dumped by pg_dump version 14.17 (Homebrew)
+-- Dumped from database version 14.18 (Homebrew)
+-- Dumped by pg_dump version 14.18 (Homebrew)
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -113,6 +113,22 @@ ALTER TABLE public.usermodel ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
     NO MAXVALUE
     CACHE 1
 );
+
+
+--
+-- Name: map pk_map; Type: CONSTRAINT; Schema: public; Owner: cjhorn
+--
+
+ALTER TABLE ONLY public.map
+    ADD CONSTRAINT pk_map PRIMARY KEY (id);
+
+
+--
+-- Name: robotcommand pk_robotcommand; Type: CONSTRAINT; Schema: public; Owner: cjhorn
+--
+
+ALTER TABLE ONLY public.robotcommand
+    ADD CONSTRAINT pk_robotcommand PRIMARY KEY (id);
 
 
 --
