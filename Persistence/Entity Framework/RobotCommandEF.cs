@@ -27,7 +27,7 @@ public class RobotCommandEF : IRobotCommandDataAccess
     {
         RobotCommand? command = _context.RobotCommands.Find(id);
         if (command == null)
-            throw new CommandNotFoundException(id);
+            throw new NotFoundException(id);
         return command;
     }
 
@@ -36,7 +36,7 @@ public class RobotCommandEF : IRobotCommandDataAccess
         // check if command name already exists
         bool nameExists = _context.RobotCommands.Any(command => command.Name == newCommand.Name);
         if (nameExists)
-            throw new DuplicateCommandNameException(newCommand.Name);
+            throw new DuplicateNameException(newCommand.Name);
 
         newCommand.CreatedDate = DateTime.Now;
         newCommand.ModifiedDate = DateTime.Now;
@@ -51,14 +51,14 @@ public class RobotCommandEF : IRobotCommandDataAccess
         // check name doesn't already exist
         bool nameExists = _context.RobotCommands.Any(command => command.Id != id && command.Name == inputCommand.Name);
         if (nameExists)
-            throw new DuplicateCommandNameException(inputCommand.Name);
+            throw new DuplicateNameException(inputCommand.Name);
 
         // find command
         RobotCommand? target = _context.RobotCommands.Find(id);
 
         // check command exists
         if (target == null)
-            throw new CommandNotFoundException(id);
+            throw new NotFoundException(id);
 
         // update properties
         target.Name = inputCommand.Name;

@@ -25,7 +25,7 @@ public class RobotCommandRepository : IRobotCommandDataAccess, IRepository
         NpgsqlParameter[] sqlParams = [new() { Value = id }];
         RobotCommand? result = _repo.ExecuteReader<RobotCommand>(sqlCommand, sqlParams).SingleOrDefault();
         if (result == null)
-            throw new CommandNotFoundException(id);
+            throw new NotFoundException(id);
         return result;
     }
 
@@ -37,7 +37,7 @@ public class RobotCommandRepository : IRobotCommandDataAccess, IRepository
         
         List<RobotCommand> existingCommands = _repo.ExecuteReader<RobotCommand>(checkCommand, checkParams);
         if (existingCommands.Any())
-            throw new DuplicateCommandNameException(newCommand.Name);
+            throw new DuplicateNameException(newCommand.Name);
 
 
         // insert new command
@@ -67,7 +67,7 @@ public class RobotCommandRepository : IRobotCommandDataAccess, IRepository
         
         List<RobotCommand> duplicates = _repo.ExecuteReader<RobotCommand>(duplicateCheck, checkParams);
         if (duplicates.Any())
-            throw new DuplicateCommandNameException(updatedCommand.Name);
+            throw new DuplicateNameException(updatedCommand.Name);
         
         // update the command
         string sqlCommand = "UPDATE robotcommand SET name=($1), description=($2), ismovecommand=($3), modifieddate=($4) WHERE id=($5) RETURNING *;";

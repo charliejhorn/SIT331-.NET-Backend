@@ -78,7 +78,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
             command = new RobotCommand(commandId, name, isMoveCommand, createdDate, modifiedDate, description);
         }
         if (command == null)
-            throw new CommandNotFoundException(id);
+            throw new NotFoundException(id);
 
         return command;
     }
@@ -96,7 +96,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
         
         int nameCount = Convert.ToInt32(checkCmd.ExecuteScalar());
         if (nameCount > 0)
-            throw new DuplicateCommandNameException(newCommand.Name);
+            throw new DuplicateNameException(newCommand.Name);
 
 
         // insert new command
@@ -142,11 +142,11 @@ public class RobotCommandADO : IRobotCommandDataAccess
         // check command exists
         RobotCommand? existingCommand = commands.Find(command => command.Id == id);
         if (existingCommand == null)
-            throw new CommandNotFoundException(id);
+            throw new NotFoundException(id);
 
         // check name doesn't already exist
         if(commands.Exists(command => command.Id != id && command.Name == inputCommand.Name))
-            throw new DuplicateCommandNameException(inputCommand.Name);
+            throw new DuplicateNameException(inputCommand.Name);
 
         // send db query
         using var conn = new NpgsqlConnection(CONNECTION_STRING);

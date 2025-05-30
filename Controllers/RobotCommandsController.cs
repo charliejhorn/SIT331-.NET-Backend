@@ -78,7 +78,7 @@ public class RobotCommandsController : ControllerBase
             RobotCommand command = _robotCommandsRepo.GetRobotCommandById(id);
             return Ok(command);
         }
-        catch (CommandNotFoundException ex)
+        catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
         }
@@ -116,7 +116,7 @@ public class RobotCommandsController : ControllerBase
             RobotCommand addedCommand = _robotCommandsRepo.AddRobotCommand(newCommand);
             return CreatedAtRoute("GetRobotCommand", new { id = addedCommand.Id }, addedCommand);
         }
-        catch (DuplicateCommandNameException ex)
+        catch (DuplicateNameException ex)
         {
             return Conflict(new { message = ex.Message });
         }
@@ -159,11 +159,11 @@ public class RobotCommandsController : ControllerBase
             RobotCommand? updatedCommand = _robotCommandsRepo.UpdateRobotCommand(id, inputCommand);
             return Ok(updatedCommand);
         }
-        catch (DuplicateCommandNameException ex)
+        catch (DuplicateNameException ex)
         {
             return Conflict(new { message = ex.Message });
         }
-        catch (CommandNotFoundException ex)
+        catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
         }
@@ -199,7 +199,7 @@ public class RobotCommandsController : ControllerBase
             if (success) return NoContent();
             else return NotFound();
         }
-        catch (CommandNotFoundException ex)
+        catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
         }

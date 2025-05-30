@@ -1,17 +1,17 @@
 namespace robot_controller_api.Exceptions;
 
-public class DuplicateCommandNameException : Exception
+public class DuplicateNameException : Exception
 {
-    public DuplicateCommandNameException(string name)
-        : base($"A command with the name '{name}' already exists.")
+    public DuplicateNameException(string name)
+        : base($"An entity with the name '{name}' already exists.")
     {
     }
 }
 
-public class CommandNotFoundException : Exception
+public class NotFoundException : Exception
 {
-    public CommandNotFoundException(int id) 
-        : base($"Command with ID {id} was not found.")
+    public NotFoundException(int id) 
+        : base($"An entity with ID {id} was not found.")
     {
     }
 }
