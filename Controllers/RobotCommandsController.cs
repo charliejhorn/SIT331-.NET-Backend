@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using robot_controller_api.Persistence;
 using robot_controller_api.Models;
+using robot_controller_api.Exceptions;
 using System.Text.Json;
 using System.Text;
 
@@ -72,13 +73,15 @@ public class RobotCommandsController : ControllerBase
     [HttpGet("{id}", Name = "GetRobotCommand"), AllowAnonymous]
     public IActionResult GetRobotCommandById(int id)
     {
-        List<RobotCommand> commands = _robotCommandsRepo.GetRobotCommands();
-
-        RobotCommand? command = commands.Find((RobotCommand command) => command.Id == id);
-
-        if(command == null) return NotFound();
-
-        return Ok(command);
+        try
+        {
+            RobotCommand command = _robotCommandsRepo.GetRobotCommandById(id);
+            return Ok(command);
+        }
+        catch (CommandNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     /// <summary>
@@ -108,31 +111,33 @@ public class RobotCommandsController : ControllerBase
     {
         if(newCommand == null) return BadRequest();
 
-        List<RobotCommand> commands = _robotCommandsRepo.GetRobotCommands();
-        if(commands.Exists(command => command.Name == newCommand.Name)) return Conflict("Name already exists.");
-
-        newCommand.CreatedDate = DateTime.Now;
-        newCommand.ModifiedDate = DateTime.Now;
-
-        RobotCommand? addedCommand = _robotCommandsRepo.AddRobotCommand(newCommand);
-
-        if (addedCommand == null) return BadRequest("RobotCommand could not be created.");
-
-        return CreatedAtRoute("GetRobotCommand", new { id = addedCommand.Id }, addedCommand);
+        try
+        {
+            RobotCommand addedCommand = _robotCommandsRepo.AddRobotCommand(newCommand);
+            return CreatedAtRoute("GetRobotCommand", new { id = addedCommand.Id }, addedCommand);
+        }
+        catch (DuplicateCommandNameException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     /// <summary>
     /// Updates an existing robot command.
     /// </summary>
     /// <param name="id">The id of the targeted robot command.</param>
-    /// <param name="updatedCommand">An updated robot command from the HTTP request body.</param>
+    /// <param name="inputCommand">An updated robot command from the HTTP request body.</param>
     /// <returns>The updated robot command</returns>
     /// <remarks>
     /// Sample request:
     ///
     ///     PUT /api/robot-commands/1
     ///     {
-    ///        "name": "DANCE",
+    ///        "name": "Dance",
     ///        "isMoveCommand": true,
     ///        "description": "Salsa on the Moon"
     ///     }
@@ -147,28 +152,26 @@ public class RobotCommandsController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPut("{id}"), Authorize(Policy = "AdminOnly")]
-    public IActionResult UpdateRobotCommand(int id, RobotCommand updatedCommand)
+    public IActionResult UpdateRobotCommand(int id, RobotCommand inputCommand)
     {
-        if (updatedCommand == null) return BadRequest("Robot command data is required.");
-
-        // check command exists
-        List<RobotCommand> commands = _robotCommandsRepo.GetRobotCommands();
-        RobotCommand? existingCommand = commands.Find(command => command.Id == id);
-        if (existingCommand == null) return NotFound();
-
-        // check name doesn't already exist
-        if(commands.Exists(command => command.Id != id && command.Name == updatedCommand.Name)) return Conflict("Name already exists.");
-
-        updatedCommand.Id = id;
-        updatedCommand.ModifiedDate = DateTime.UtcNow;
-        updatedCommand.CreatedDate = existingCommand.CreatedDate; // keep original creation date
-
-        // push change to database
-        RobotCommand? returnedCommand = _robotCommandsRepo.UpdateRobotCommand(updatedCommand);
-
-        if (returnedCommand == null) return BadRequest("RobotCommand could not be updated.");
-
-        return Ok(returnedCommand);
+        try
+        {
+            RobotCommand? updatedCommand = _robotCommandsRepo.UpdateRobotCommand(id, inputCommand);
+            return Ok(updatedCommand);
+        }
+        catch (DuplicateCommandNameException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (CommandNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            string fullError = ex.ToString(); // this includes inner exception details
+            return BadRequest(new { message = ex.Message, details = fullError });
+        }
     }
 
     /// <summary>
@@ -189,10 +192,17 @@ public class RobotCommandsController : ControllerBase
     [HttpDelete("{id}"), Authorize(Policy = "AdminOnly")]
     public IActionResult DeleteRobotCommand(int id)
     {
-        bool success = _robotCommandsRepo.DeleteRobotCommand(id);
+        try
+        {
+            bool success = _robotCommandsRepo.DeleteRobotCommand(id);
 
-        if (success) return NoContent();
-        else return NotFound();
+            if (success) return NoContent();
+            else return NotFound();
+        }
+        catch (CommandNotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     /// <summary>
@@ -262,7 +272,7 @@ public class RobotCommandsController : ControllerBase
             existingCommand.ModifiedDate = DateTime.UtcNow;
             
             // push change to database
-            RobotCommand? returnedCommand = _robotCommandsRepo.UpdateRobotCommand(existingCommand);
+            RobotCommand? returnedCommand = _robotCommandsRepo.UpdateRobotCommand(existingCommand.Id, existingCommand);
 
             if (returnedCommand == null) return BadRequest("RobotCommand could not be patched.");
 

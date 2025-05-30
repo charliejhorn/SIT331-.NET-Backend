@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using robot_controller_api.Models;
+using robot_controller_api.Exceptions;
 
 namespace robot_controller_api.Persistence;
 
@@ -16,50 +17,67 @@ public class RobotCommandEF : IRobotCommandDataAccess
     {
         return _context.RobotCommands.ToList();
     }
-    
+
     public List<RobotCommand> GetMoveRobotCommands()
     {
-        return _context.RobotCommands.Where(command => command.IsMoveCommand).ToList();
+        return _context.RobotCommands.Where(command => command.IsMoveCommand == true).ToList();
     }
 
     public RobotCommand GetRobotCommandById(int id)
     {
-        return _context.RobotCommands.Single(command => command.Id == id);
+        RobotCommand? command = _context.RobotCommands.Find(id);
+        if (command == null)
+            throw new CommandNotFoundException(id);
+        return command;
     }
 
     public RobotCommand AddRobotCommand(RobotCommand newCommand)
     {
+        // check if command name already exists
+        bool nameExists = _context.RobotCommands.Any(command => command.Name == newCommand.Name);
+        if (nameExists)
+            throw new DuplicateCommandNameException(newCommand.Name);
+
+        newCommand.CreatedDate = DateTime.Now;
+        newCommand.ModifiedDate = DateTime.Now;
+
         _context.RobotCommands.Add(newCommand);
         _context.SaveChanges();
         return newCommand;
     }
 
-    public RobotCommand UpdateRobotCommand(RobotCommand updatedCommand)
+    public RobotCommand UpdateRobotCommand(int id, RobotCommand inputCommand)
     {
-        // RobotCommand target = _context.RobotCommands.Single(command => command.Id == updatedCommand.Id);
+        // check name doesn't already exist
+        bool nameExists = _context.RobotCommands.Any(command => command.Id != id && command.Name == inputCommand.Name);
+        if (nameExists)
+            throw new DuplicateCommandNameException(inputCommand.Name);
 
-        // target.
+        // find command
+        RobotCommand? target = _context.RobotCommands.Find(id);
 
-        // _context.Entry(updatedCommand).State = EntityState.Modified;
-        _context.RobotCommands.Update(updatedCommand);
+        // check command exists
+        if (target == null)
+            throw new CommandNotFoundException(id);
 
-        // _context.ChangeTracker.DetectChanges();
-        // Console.WriteLine(_context.ChangeTracker.DebugView.LongView);
+        // update properties
+        target.Name = inputCommand.Name;
+        target.Description = inputCommand.Description;
+        target.IsMoveCommand = inputCommand.IsMoveCommand;
+        target.ModifiedDate = DateTime.Now;
 
+        // push changes to db and return the updated command
         _context.SaveChanges();
-        return updatedCommand;
+        return target;
     }
 
     public bool DeleteRobotCommand(int id)
     {
-        var command = _context.RobotCommands.Find(id);
-        if (command == null)
-        {
-            return false;
-        }
+        // check if command exists first
+        RobotCommand existingCommand = GetRobotCommandById(id); // this will throw if not found
 
-        _context.RobotCommands.Remove(command);
-        var affectedRows = _context.SaveChanges();
+        _context.RobotCommands.Remove(existingCommand);
+        int affectedRows = _context.SaveChanges();
         return affectedRows > 0;
     }
 }
