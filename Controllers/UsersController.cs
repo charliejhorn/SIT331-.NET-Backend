@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using robot_controller_api.Persistence;
 using robot_controller_api.Authentication;
 using robot_controller_api.Models;
+using robot_controller_api.Exceptions;
 
 namespace robot_controller_api.Controllers;
 
@@ -52,8 +53,7 @@ public class UsersController : ControllerBase
     [HttpGet("admin"), Authorize(Policy = "AdminOnly")]
     public IEnumerable<UserModel> GetAdminUsersOnly()
     {
-        List<UserModel> users = _usersRepo.GetUsers();
-        return users.Where((UserModel user) => user.Role == "admin");
+        return _usersRepo.GetSpecificUsers("Admin");
     }
 
     /// <summary>
@@ -74,13 +74,15 @@ public class UsersController : ControllerBase
     [HttpGet("{id}", Name = "GetUser"), Authorize(Policy = "SelfOrAdmin")]
     public IActionResult GetUserById(int id)
     {
-        List<UserModel> users = _usersRepo.GetUsers();
-
-        UserModel? user = users.Find((UserModel user) => user.Id == id);
-
-        if(user == null) return NotFound();
-
-        return Ok(user);
+        try
+        {
+            UserModel user = _usersRepo.GetUserById(id);
+            return Ok(user);
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     /// <summary>
@@ -113,25 +115,26 @@ public class UsersController : ControllerBase
     {
         if(newUser == null) return BadRequest();
 
-        List<UserModel> users = _usersRepo.GetUsers();
-        if(users.Exists(user => user.Email == newUser.Email)) return Conflict("Email already exists.");
-
-        newUser.PasswordHash = PasswordService.HashPassword(newUser.PasswordHash);
-        newUser.CreatedDate = DateTime.Now;
-        newUser.ModifiedDate = DateTime.Now;
-
-        UserModel? addedUser = _usersRepo.AddUser(newUser);
-
-        if (addedUser == null) return BadRequest("User could not be created.");
-
-        return CreatedAtRoute("GetUser", new { id = addedUser.Id }, addedUser);
+        try
+        {
+            UserModel addedUser = _usersRepo.AddUser(newUser);
+            return CreatedAtRoute("GetUser", new { id = addedUser.Id }, addedUser);
+        }
+        catch (DuplicateEmailException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 
     /// <summary>
     /// Updates an existing user.
     /// </summary>
     /// <param name="id">The ID of the targeted user.</param>
-    /// <param name="updatedUserFromRequest">An updated user from the HTTP request body.</param>
+    /// <param name="inputUser">An updated user from the HTTP request body.</param>
     /// <returns>The updated user.</returns>
     /// <remarks>
     /// Sample request:
@@ -152,33 +155,28 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpPut("{id}"), Authorize(Policy = "SelfOrAdmin")]
-    public IActionResult UpdateUser(int id, UserUpdateModel updatedUserFromRequest)
+    public IActionResult UpdateUser(int id, UserUpdateDTO inputUser)
     {
-        if (updatedUserFromRequest == null) return BadRequest("User data is required.");
+        if (inputUser == null) return BadRequest("User data is required.");
 
-        // check user exists
-        List<UserModel> users = _usersRepo.GetUsers();
-        UserModel? existingUser = users.Find(user => user.Id == id);
-        if (existingUser == null) return NotFound();
-
-        UserModel updatedUser = new UserModel();
-
-        updatedUser.Id = existingUser.Id; // match correct ID
-        updatedUser.FirstName = updatedUserFromRequest.FirstName; // use new first name
-        updatedUser.LastName = updatedUserFromRequest.LastName; // use new last name
-        updatedUser.Description = updatedUserFromRequest.Description; // use new description
-        updatedUser.Role = updatedUserFromRequest.Role;
-        updatedUser.Email = existingUser.Email; // keep original email
-        updatedUser.PasswordHash = existingUser.PasswordHash; // keep original password
-        updatedUser.CreatedDate = existingUser.CreatedDate; // keep original creation date
-        updatedUser.ModifiedDate = DateTime.UtcNow;
-
-        // push change to database
-        UserModel? returnedUser = _usersRepo.UpdateUser(updatedUser);
-
-        if (returnedUser == null) return BadRequest("User could not be updated.");
-
-        return Ok(returnedUser);
+        try
+        {
+            UserModel updatedUser = _usersRepo.UpdateUser(id, inputUser);
+            return Ok(updatedUser);
+        }
+        catch (DuplicateEmailException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            string fullError = ex.ToString(); // this includes inner exception details
+            return BadRequest(new { message = ex.Message, details = fullError });
+        }
     }
 
     /// <summary>
@@ -199,10 +197,17 @@ public class UsersController : ControllerBase
     [HttpDelete("{id}"), Authorize(Policy = "SelfOrAdmin")]
     public IActionResult DeleteUser(int id)
     {
-        bool success = _usersRepo.DeleteUser(id);
+        try
+        {
+            bool success = _usersRepo.DeleteUser(id);
 
-        if (success) return NoContent();
-        else return NotFound();
+            if (success) return NoContent();
+            else return NotFound();
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
     }
 
     /// <summary>
@@ -230,27 +235,26 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPatch("{id}"), Authorize(Policy = "SelfOrAdmin")]
-    public IActionResult PatchUser(int id, LoginModel? loginModel)
+    public IActionResult PatchUser(int id, UserLoginDTO? loginModel)
     {
         if (loginModel == null) return BadRequest("User data is required.");
 
-        // check user exists
-        List<UserModel> users = _usersRepo.GetUsers();
-        UserModel? existingUser = users.Find(user => user.Id == id);
-        if (existingUser == null) return NotFound();
-            
-        // check email doesn't already exist
-        if(users.Exists(user => user.Id != id && user.Email == loginModel.Email)) return Conflict("Email already exists.");
-
-        existingUser.PasswordHash = PasswordService.HashPassword(loginModel.Password); // set new password
-        existingUser.Email = loginModel.Email; // set new email
-        existingUser.ModifiedDate = DateTime.UtcNow; // updated modified date
-        
-        // push change to database
-        UserModel? returnedUser = _usersRepo.UpdateUser(existingUser);
-
-        if (returnedUser == null) return BadRequest("User could not be patched.");
-
-        return Ok(returnedUser);
+        try
+        {
+            UserModel updatedUser = _usersRepo.UpdateUserCredentials(id, loginModel);
+            return Ok(updatedUser);
+        }
+        catch (DuplicateEmailException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = ex.Message });
+        }
     }
 }

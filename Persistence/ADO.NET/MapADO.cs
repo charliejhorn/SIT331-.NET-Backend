@@ -88,10 +88,10 @@ public class MapADO : IMapDataAccess
 
     public Map AddMap(Map newMap)
     {
-        // check if map name already exists
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
         
+        // check if map name already exists
         using NpgsqlCommand checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM map WHERE name = $1", conn)
         {
             Parameters = { new() { Value = newMap.Name } }
@@ -101,6 +101,8 @@ public class MapADO : IMapDataAccess
         if (nameCount > 0)
             throw new DuplicateNameException(newMap.Name);
 
+
+        // edit the dates
         newMap.CreatedDate = DateTime.Now;
         newMap.ModifiedDate = DateTime.Now;
 

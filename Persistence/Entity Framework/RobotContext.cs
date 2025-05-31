@@ -82,9 +82,9 @@ public partial class RobotContext : DbContext
 
         modelBuilder.Entity<UserModel>(entity =>
         {
-            entity
-                .HasNoKey()
-                .ToTable("usermodel");
+            entity.HasKey(e => e.Id).HasName("pk_usermodel");
+
+            entity.ToTable("usermodel");
 
             entity.Property(e => e.CreatedDate)
                 .HasColumnType("timestamp without time zone")

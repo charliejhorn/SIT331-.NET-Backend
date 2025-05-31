@@ -8,10 +8,23 @@ public class DuplicateNameException : Exception
     }
 }
 
+public class DuplicateEmailException : Exception
+{
+    public DuplicateEmailException(string email)
+        : base($"A user with the email '{email}' already exists.")
+    {
+    }
+}
+
 public class NotFoundException : Exception
 {
     public NotFoundException(int id) 
         : base($"An entity with ID {id} was not found.")
+    {
+    }
+
+    public NotFoundException(string identifier, string type)
+        : base($"An entity with {type} '{identifier}' was not found.")
     {
     }
 }

@@ -154,6 +154,8 @@ public class RobotCommandsController : ControllerBase
     [HttpPut("{id}"), Authorize(Policy = "AdminOnly")]
     public IActionResult UpdateRobotCommand(int id, RobotCommand inputCommand)
     {
+        if (inputCommand == null) return BadRequest("Robot command data is required.");
+        
         try
         {
             RobotCommand? updatedCommand = _robotCommandsRepo.UpdateRobotCommand(id, inputCommand);

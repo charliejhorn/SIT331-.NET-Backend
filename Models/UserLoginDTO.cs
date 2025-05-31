@@ -1,11 +1,11 @@
 namespace robot_controller_api.Models;
 
-public class LoginModel
+public class UserLoginDTO
 {
     public string Email {get; set;}
     public string Password {get; set;}
 
-    public LoginModel(string email, string password)
+    public UserLoginDTO(string email, string password)
     {
         Email = email;
         Password = password;
