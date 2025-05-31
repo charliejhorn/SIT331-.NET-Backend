@@ -1,0 +1,212 @@
+
+=== ROBOT COMMAND EF METHODS ===
+
+GetRobotCommands:
+Executed DbCommand (15ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r.name
+FROM robotcommand AS r
+
+GetMoveRobotCommands:
+Executed DbCommand (14ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r.name
+FROM robotcommand AS r
+WHERE r.ismovecommand
+
+
+GetRobotCommandById:
+Executed DbCommand (8ms) [Parameters=[@__p_0='15'], CommandType='Text', CommandTimeout='30']
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r.name
+FROM robotcommand AS r
+WHERE r.id = @__p_0
+LIMIT 1
+
+AddRobotCommand:
+// check if command name already exists
+Executed DbCommand (2ms) [Parameters=[@__newCommand_Name_0='driving'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM robotcommand AS r
+    WHERE r.name = @__newCommand_Name_0)
+    SELECT 1
+    FROM robotcommand AS r
+    WHERE r.name = @__newCommand_Name_0)
+
+// insert new command
+Executed DbCommand (6ms) [Parameters=[@p0='2025-05-31T14:26:29.1363410+10:00', @p1='learning to waltz', @p2='False', @p3='2025-05-31T14:26:29.1363420+10:00', @p4='driving' (Nullable = false)], CommandType='Text', CommandTimeout='30']
+INSERT INTO robotcommand (createddate, description, ismovecommand, modifieddate, name)
+VALUES (@p0, @p1, @p2, @p3, @p4)
+RETURNING id;
+
+UpdateRobotCommand:
+// check name doesn't already exist (excluding current command)
+Executed DbCommand (2ms) [Parameters=[@__id_0='15', @__inputCommand_Name_1='planting'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM robotcommand AS r
+    WHERE r.id <> @__id_0 AND r.name = @__inputCommand_Name_1)
+    SELECT 1
+    FROM robotcommand AS r
+    WHERE r.id <> @__id_0 AND r.name = @__inputCommand_Name_1)
+
+// find command to update
+Executed DbCommand (1ms) [Parameters=[@__p_0='15'], CommandType='Text', CommandTimeout='30']
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r.name
+FROM robotcommand AS r
+WHERE r.id = @__p_0
+LIMIT 1
+
+// update command properties
+Executed DbCommand (2ms) [Parameters=[@p3='14', @p0='learning to love trees', @p1='2025-05-31T14:26:56.7848610+10:00', @p2='planting' (Nullable = false)], CommandType='Text', CommandTimeout='30']
+UPDATE robotcommand SET description = @p0, modifieddate = @p1, name = @p2
+WHERE id = @p3;
+
+DeleteRobotCommand:
+// find command to delete (uses GetRobotCommandById)
+Executed DbCommand (1ms) [Parameters=[@__p_0='14'], CommandType='Text', CommandTimeout='30']
+SELECT r.id, r.createddate, r.description, r.ismovecommand, r.modifieddate, r.name
+FROM robotcommand AS r
+WHERE r.id = @__p_0
+LIMIT 1
+
+// delete the command
+Executed DbCommand (2ms) [Parameters=[@p0='14'], CommandType='Text', CommandTimeout='30']
+DELETE FROM robotcommand
+WHERE id = @p0;
+
+=== USER EF METHODS ===
+
+GetUsers:
+Executed DbCommand (3ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT u.id, u.createddate, u.description, u.email, u.firstname, u.lastname, u.modifieddate, u.passwordhash, u.role
+FROM usermodel AS u
+
+GetUsersByRole:
+Executed DbCommand (7ms) [Parameters=[@__role_0='Admin'], CommandType='Text', CommandTimeout='30']
+SELECT u.id, u.createddate, u.description, u.email, u.firstname, u.lastname, u.modifieddate, u.passwordhash, u.role
+FROM usermodel AS u
+WHERE u.role = @__role_0
+
+GetUserById:
+Executed DbCommand (2ms) [Parameters=[@__p_0='13'], CommandType='Text', CommandTimeout='30']
+SELECT u.id, u.createddate, u.description, u.email, u.firstname, u.lastname, u.modifieddate, u.passwordhash, u.role
+FROM usermodel AS u
+WHERE u.id = @__p_0
+LIMIT 1
+
+AddUser:
+// check if email already exists
+Executed DbCommand (36ms) [Parameters=[@__newUser_Email_0='tswifty@gmail.com'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM usermodel AS u
+    WHERE u.email = @__newUser_Email_0)
+    SELECT 1
+    FROM usermodel AS u
+    WHERE u.email = @__newUser_Email_0)
+
+// insert new user
+Executed DbCommand (7ms) [Parameters=[@p0='2025-05-31T14:46:54.8924720+10:00', @p1='Professional singer.', @p2='tswifty@gmail.com' (Nullable = false), @p3='Taylor' (Nullable = false), @p4='Swift' (Nullable = false), @p5='2025-05-31T14:46:54.8924850+10:00', @p6='$argon2id$v=19$m=65536,t=3,p=1$RziXgjAyW1m1qPFqcRTJGg$oGdQTq0ln0HqEHhORhR+65+8xvuii8GsWyYm8ixYaJY' (Nullable = false), @p7='User'], CommandType='Text', CommandTimeout='30']
+INSERT INTO usermodel (createddate, description, email, firstname, lastname, modifieddate, passwordhash, role)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING id;
+
+UpdateUser:
+// find user to update
+Executed DbCommand (2ms) [Parameters=[@__p_0='13'], CommandType='Text', CommandTimeout='30']
+SELECT u.id, u.createddate, u.description, u.email, u.firstname, u.lastname, u.modifieddate, u.passwordhash, u.role
+FROM usermodel AS u
+WHERE u.id = @__p_0
+LIMIT 1
+
+// check email doesn't already exist (excluding current user)
+Executed DbCommand (1ms) [Parameters=[@__id_0='13', @__credentials_Email_1='taylors@gmail.com'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM usermodel AS u
+    WHERE u.id <> @__id_0 AND u.email = @__credentials_Email_1)
+
+// update user properties
+Executed DbCommand (2ms) [Parameters=[@p3='13', @p0='taylors@gmail.com' (Nullable = false), @p1='2025-05-31T14:47:30.7650350+10:00', @p2='$argon2id$v=19$m=65536,t=3,p=1$kFpeBvPA2EJr0m2OsV9FBQ$1703bt7OHUNAmKWhMOsjqHUN6xfRMy4EVakniJphQYc' (Nullable = false)], CommandType='Text', CommandTimeout='30']
+UPDATE usermodel SET email = @p0, modifieddate = @p1, passwordhash = @p2
+WHERE id = @p3;
+
+DeleteUser:
+// find user to delete (uses GetUserById)
+Executed DbCommand (1ms) [Parameters=[@__p_0='12'], CommandType='Text', CommandTimeout='30']
+SELECT u.id, u.createddate, u.description, u.email, u.firstname, u.lastname, u.modifieddate, u.passwordhash, u.role
+FROM usermodel AS u
+WHERE u.id = @__p_0
+LIMIT 1
+
+// delete the user
+Executed DbCommand (1ms) [Parameters=[@p0='12'], CommandType='Text', CommandTimeout='30']
+DELETE FROM usermodel
+WHERE id = @p0;
+
+=== MAP EF METHODS ===
+
+GetMaps:
+Executed DbCommand (13ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT m.id, m.columns, m.createddate, m.description, m.issquare, m.modifieddate, m.name, m.rows
+FROM map AS m
+
+GetMapById:
+Executed DbCommand (7ms) [Parameters=[@__p_0='12'], CommandType='Text', CommandTimeout='30']
+SELECT m.id, m.columns, m.createddate, m.description, m.issquare, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.id = @__p_0
+LIMIT 1
+
+GetSquareMaps:
+Executed DbCommand (1ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT m.id, m.columns, m.createddate, m.description, m.issquare, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.columns = m.rows
+
+AddMap:
+// check if map name already exists
+Executed DbCommand (3ms) [Parameters=[@__newMap_Name_0='Jupiter'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM map AS m
+    WHERE m.name = @__newMap_Name_0)
+
+// insert new map
+Executed DbCommand (5ms) [Parameters=[@p0='68', @p1='2025-05-31T14:54:06.7539180+10:00', @p2=NULL, @p3='2025-05-31T14:54:06.7539190+10:00', @p4='Jupiter' (Nullable = false), @p5='4'], CommandType='Text', CommandTimeout='30']
+INSERT INTO map (columns, createddate, description, modifieddate, name, rows)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5)
+RETURNING id, issquare;
+
+UpdateMap:
+// check name doesn't already exist (excluding current map)
+Executed DbCommand (2ms) [Parameters=[@__id_0='17', @__updatedMap_Name_1='Moon'], CommandType='Text', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM map AS m
+    WHERE m.id <> @__id_0 AND m.name = @__updatedMap_Name_1)
+
+// find map to update
+Executed DbCommand (1ms) [Parameters=[@__p_0='17'], CommandType='Text', CommandTimeout='30']
+SELECT m.id, m.columns, m.createddate, m.description, m.issquare, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.id = @__p_0
+LIMIT 1
+
+// update map properties
+Executed DbCommand (2ms) [Parameters=[@p4='17', @p0='30', @p1='2025-05-31T14:54:14.3119050+10:00', @p2='Moon' (Nullable = false), @p3='20'], CommandType='Text', CommandTimeout='30']
+UPDATE map SET columns = @p0, modifieddate = @p1, name = @p2, rows = @p3
+WHERE id = @p4
+RETURNING issquare;
+
+DeleteMap:
+// find map to delete (uses GetMapById)
+Executed DbCommand (10ms) [Parameters=[@__p_0='16'], CommandType='Text', CommandTimeout='30']
+SELECT m.id, m.columns, m.createddate, m.description, m.issquare, m.modifieddate, m.name, m.rows
+FROM map AS m
+WHERE m.id = @__p_0
+LIMIT 1
+
+// delete the map
+Executed DbCommand (3ms) [Parameters=[@p0='16'], CommandType='Text', CommandTimeout='30']
+DELETE FROM map
+WHERE id = @p0;

@@ -51,8 +51,7 @@ public class RobotCommandsController : ControllerBase
     [HttpGet("move"), AllowAnonymous]
     public IEnumerable<RobotCommand> GetMoveCommandsOnly()
     {
-        List<RobotCommand> commands = _robotCommandsRepo.GetRobotCommands();
-        return commands.Where((RobotCommand command) => command.IsMoveCommand);
+        return _robotCommandsRepo.GetMoveRobotCommands();
     }
 
     /// <summary>
