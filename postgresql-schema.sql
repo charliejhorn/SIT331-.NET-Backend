@@ -132,6 +132,14 @@ ALTER TABLE ONLY public.robotcommand
 
 
 --
+-- Name: usermodel pk_usermodel; Type: CONSTRAINT; Schema: public; Owner: cjhorn
+--
+
+ALTER TABLE ONLY public.usermodel
+    ADD CONSTRAINT pk_usermodel PRIMARY KEY (id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
