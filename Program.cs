@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication;
 using robot_controller_api.Persistence;
 using robot_controller_api.Authentication;
+using robot_controller_api.Contexts;
 
 
 var builder = WebApplication.CreateBuilder(args);

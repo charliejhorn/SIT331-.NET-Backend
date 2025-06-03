@@ -8,41 +8,42 @@ namespace robot_controller_api.Persistence;
 public class UserADO : IUserDataAccess
 {
     // Connection string is usually set in a config file for the ease of change.
-    private const string CONNECTION_STRING = "Host=localhost;Username=cjhorn;Password=;Database=sit331";
+    private const string CONNECTION_STRING = "Host=localhost; Username=cjhorn; Password=; Database=sit331";
 
-    public List<UserModel> GetUsers()
+    public List<UserAccount> GetUsers()
     {
-        List<UserModel> users = new List<UserModel>();
+        List<UserAccount> users = new List<UserAccount>();
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM usermodel", conn);
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM user_account", conn);
         using NpgsqlDataReader dr = cmd.ExecuteReader();
         while (dr.Read())
         {
             // read values off the data reader and create a new user here and then add it to the result list.
-            int id = (int)dr["id"];
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            UserModel user = new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            UserAccount user = new UserAccount
+            {
+                Id = (int)dr["id"],
+                Email = (string)dr["email"],
+                FirstName = (string)dr["firstname"],
+                LastName = (string)dr["lastname"],
+                PasswordHash = (string)dr["passwordhash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
             users.Add(user);
         }
         return users;
     }
 
-    public UserModel AddUser(UserModel newUser)
+    public UserAccount AddUser(UserAccount newUser)
     {
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
         
         // check for duplicate email first
-        using NpgsqlCommand checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM usermodel WHERE email = $1", conn)
+        using NpgsqlCommand checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM user_account WHERE email = $1", conn)
         {
             Parameters = { new() { Value = newUser.Email } }
         };
@@ -58,7 +59,7 @@ public class UserADO : IUserDataAccess
         newUser.ModifiedDate = DateTime.Now;
 
         // insert new user
-        using NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO usermodel (email, firstname, lastname, passwordhash, description, role, createddate, modifieddate) VALUES(($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8)) RETURNING *;", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("INSERT INTO user_account (email, firstname, lastname, passwordhash, description, role, createddate, modifieddate) VALUES(($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8)) RETURNING *;", conn)
         {
             Parameters =
             {
@@ -77,21 +78,22 @@ public class UserADO : IUserDataAccess
         // read new user that was returned from query
         using NpgsqlDataReader dr = cmd.ExecuteReader();
 
-        UserModel? returnedUser = null;
+        UserAccount? returnedUser = null;
         while (dr.Read())
         {
             // read values off the data reader and create a new user
-            int id = (int)dr["id"];
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedUser = new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            returnedUser = new UserAccount
+            {
+                Id = (int)dr["id"],
+                Email = (string)dr["email"],
+                FirstName = (string)dr["firstname"],
+                LastName = (string)dr["lastname"],
+                PasswordHash = (string)dr["passwordhash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
         }
          
         if (returnedUser == null)
@@ -102,12 +104,12 @@ public class UserADO : IUserDataAccess
         return returnedUser;
     }
 
-    public List<UserModel> GetSpecificUsers(string role)
+    public List<UserAccount> GetSpecificUsers(string role)
     {
-        List<UserModel> users = new List<UserModel>();
+        List<UserAccount> users = new List<UserAccount>();
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM usermodel WHERE role=($1)", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM user_account WHERE role=($1)", conn)
         {
             Parameters =
             {
@@ -118,27 +120,28 @@ public class UserADO : IUserDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new user here and then add it to the result list.
-            int id = (int)dr["id"];
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? userRole = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            UserModel user = new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, userRole);
+            UserAccount user = new UserAccount
+            {
+                Id = (int)dr["id"],
+                Email = (string)dr["email"],
+                FirstName = (string)dr["first_name"],
+                LastName = (string)dr["last_name"],
+                PasswordHash = (string)dr["password_hash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
             users.Add(user);
         }
         return users;
     }
 
-    public UserModel GetUserById(int id)
+    public UserAccount GetUserById(int id)
     {
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM usermodel WHERE id=($1)", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM user_account WHERE id=($1)", conn)
         {
             Parameters =
             {
@@ -149,27 +152,29 @@ public class UserADO : IUserDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new user
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            return new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            return new UserAccount
+            {
+                Id = id,
+                Email = (string)dr["email"],
+                FirstName = (string)dr["first_name"],
+                LastName = (string)dr["last_name"],
+                PasswordHash = (string)dr["password_hash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
 
         // if nothing was returned in the DataReader, then by default throw NotFound
         throw new NotFoundException(id);
     }
 
-    public UserModel GetUserByEmail(string email)
+    public UserAccount GetUserByEmail(string email)
     {
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM usermodel WHERE email=($1)", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM user_account WHERE email=($1)", conn)
         {
             Parameters =
             {
@@ -180,23 +185,25 @@ public class UserADO : IUserDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new user
-            int id = (int)dr["id"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            return new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            return new UserAccount
+            {
+                Id = (int)dr["id"],
+                Email = email,
+                FirstName = (string)dr["first_name"],
+                LastName = (string)dr["last_name"],
+                PasswordHash = (string)dr["password_hash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
 
         // if nothing was returned in the DataReader, then by default throw NotFound
         throw new NotFoundException(email, "email");
     }
 
-    public UserModel UpdateUser(int id, UserUpdateDTO updatedUser)
+    public UserAccount UpdateUser(int id, UserUpdateDTO updatedUser)
     {
         // check if user exists first
         GetUserById(id); // this will throw NotFoundException if user doesn't exist
@@ -206,7 +213,7 @@ public class UserADO : IUserDataAccess
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
 
-        using NpgsqlCommand cmd = new NpgsqlCommand("UPDATE usermodel SET firstname=($1), lastname=($2), description=($3), role=($4), modifieddate=($5) WHERE id=($6) RETURNING *;", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("UPDATE user_account SET first_name=($1), last_name=($2), description=($3), role=($4), modified_date=($5) WHERE id=($6) RETURNING *;", conn)
         {
             Parameters =
             {
@@ -223,20 +230,22 @@ public class UserADO : IUserDataAccess
         // read returned user from query
         using NpgsqlDataReader dr = cmd.ExecuteReader();
 
-        UserModel? returnedUser = null;
+        UserAccount? returnedUser = null;
         while (dr.Read())
         {
             // read values off the data reader and create a new user
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedUser = new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            returnedUser = new UserAccount
+            {
+                Id = id,
+                Email = (string)dr["email"],
+                FirstName = (string)dr["first_name"],
+                LastName = (string)dr["last_name"],
+                PasswordHash = (string)dr["password_hash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
 
         if (returnedUser == null)
@@ -247,7 +256,7 @@ public class UserADO : IUserDataAccess
         return returnedUser;
     }
 
-    public UserModel UpdateUserCredentials(int id, UserLoginDTO credentials)
+    public UserAccount UpdateUserCredentials(int id, UserLoginDTO credentials)
     {
         // check if user exists first
         GetUserById(id); // this will throw NotFoundException if user doesn't exist
@@ -255,7 +264,7 @@ public class UserADO : IUserDataAccess
         // check for duplicate email (unless the email belongs to the current user)
         using NpgsqlConnection checkConn = new NpgsqlConnection(CONNECTION_STRING);
         checkConn.Open();
-        using NpgsqlCommand checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM usermodel WHERE email = $1 AND id != $2", checkConn)
+        using NpgsqlCommand checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM user_account WHERE email = $1 AND id != $2", checkConn)
         {
             Parameters = 
             { 
@@ -272,7 +281,7 @@ public class UserADO : IUserDataAccess
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
 
-        using NpgsqlCommand cmd = new NpgsqlCommand("UPDATE usermodel SET email=($1), passwordhash=($2), modifieddate=($3) WHERE id=($4) RETURNING *;", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("UPDATE user_account SET email=($1), password_hash=($2), modified_date=($3) WHERE id=($4) RETURNING *;", conn)
         {
             Parameters =
             {
@@ -286,20 +295,22 @@ public class UserADO : IUserDataAccess
         // read returned user from query
         using NpgsqlDataReader dr = cmd.ExecuteReader();
 
-        UserModel? returnedUser = null;
+        UserAccount? returnedUser = null;
         while (dr.Read())
         {
             // read values off the data reader and create a new user
-            string email = (string)dr["email"];
-            string firstName = (string)dr["firstname"];
-            string lastName = (string)dr["lastname"];
-            string passwordHash = (string)dr["passwordhash"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            string? role = dr["role"] == DBNull.Value ? null : (string)dr["role"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedUser = new UserModel(id, email, firstName, lastName, passwordHash, createdDate, modifiedDate, description, role);
+            returnedUser = new UserAccount
+            {
+                Id = id,
+                Email = (string)dr["email"],
+                FirstName = (string)dr["first_name"],
+                LastName = (string)dr["last_name"],
+                PasswordHash = (string)dr["password_hash"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                Role = dr["role"] == DBNull.Value ? null : (string)dr["role"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
 
         if (returnedUser == null)
@@ -319,7 +330,7 @@ public class UserADO : IUserDataAccess
         using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
 
-        using NpgsqlCommand cmd = new NpgsqlCommand("DELETE FROM usermodel WHERE id=($1)", conn)
+        using NpgsqlCommand cmd = new NpgsqlCommand("DELETE FROM user_account WHERE id=($1)", conn)
         {
             Parameters =
             {

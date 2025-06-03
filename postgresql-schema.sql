@@ -28,11 +28,11 @@ CREATE TABLE public.map (
     id integer NOT NULL,
     columns integer NOT NULL,
     rows integer NOT NULL,
-    issquare boolean GENERATED ALWAYS AS (((rows > 0) AND (rows = columns))) STORED,
+    is_square boolean GENERATED ALWAYS AS (((rows > 0) AND (rows = columns))) STORED,
     name character varying(50) NOT NULL,
     description character varying(800),
-    createddate timestamp without time zone NOT NULL,
-    modifieddate timestamp without time zone NOT NULL
+    created_date timestamp without time zone NOT NULL,
+    modified_date timestamp without time zone NOT NULL
 );
 
 
@@ -53,27 +53,27 @@ ALTER TABLE public.map ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
 
 
 --
--- Name: robotcommand; Type: TABLE; Schema: public; Owner: cjhorn
+-- Name: robot_command; Type: TABLE; Schema: public; Owner: cjhorn
 --
 
-CREATE TABLE public.robotcommand (
+CREATE TABLE public.robot_command (
     id integer NOT NULL,
     name character varying(50) NOT NULL,
     description character varying(800),
-    ismovecommand boolean NOT NULL,
-    createddate timestamp without time zone NOT NULL,
-    modifieddate timestamp without time zone NOT NULL
+    is_move_command boolean NOT NULL,
+    created_date timestamp without time zone NOT NULL,
+    modified_date timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE public.robotcommand OWNER TO cjhorn;
+ALTER TABLE public.robot_command OWNER TO cjhorn;
 
 --
--- Name: robotcommand_id_seq; Type: SEQUENCE; Schema: public; Owner: cjhorn
+-- Name: robot_command_id_seq; Type: SEQUENCE; Schema: public; Owner: cjhorn
 --
 
-ALTER TABLE public.robotcommand ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public.robotcommand_id_seq
+ALTER TABLE public.robot_command ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.robot_command_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -83,30 +83,30 @@ ALTER TABLE public.robotcommand ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY
 
 
 --
--- Name: usermodel; Type: TABLE; Schema: public; Owner: cjhorn
+-- Name: user_account; Type: TABLE; Schema: public; Owner: cjhorn
 --
 
-CREATE TABLE public.usermodel (
+CREATE TABLE public.user_account (
     id integer NOT NULL,
-    email character varying(50) NOT NULL,
-    firstname character varying(50) NOT NULL,
-    lastname character varying(50) NOT NULL,
-    passwordhash character varying(100) NOT NULL,
+    password_hash character varying(200) NOT NULL,
+    email character varying(100) NOT NULL,
     description character varying(800),
-    role character varying(50),
-    createddate timestamp without time zone NOT NULL,
-    modifieddate timestamp without time zone NOT NULL
+    first_name character varying(50) NOT NULL,
+    last_name character varying(50) NOT NULL,
+    role character varying(20) NOT NULL,
+    created_date timestamp without time zone NOT NULL,
+    modified_date timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE public.usermodel OWNER TO cjhorn;
+ALTER TABLE public.user_account OWNER TO cjhorn;
 
 --
--- Name: usermodel_id_seq; Type: SEQUENCE; Schema: public; Owner: cjhorn
+-- Name: user_account_id_seq; Type: SEQUENCE; Schema: public; Owner: cjhorn
 --
 
-ALTER TABLE public.usermodel ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
-    SEQUENCE NAME public.usermodel_id_seq
+ALTER TABLE public.user_account ALTER COLUMN id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.user_account_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -124,11 +124,19 @@ ALTER TABLE ONLY public.map
 
 
 --
--- Name: robotcommand pk_robotcommand; Type: CONSTRAINT; Schema: public; Owner: cjhorn
+-- Name: robot_command pk_robot_command; Type: CONSTRAINT; Schema: public; Owner: cjhorn
 --
 
-ALTER TABLE ONLY public.robotcommand
-    ADD CONSTRAINT pk_robotcommand PRIMARY KEY (id);
+ALTER TABLE ONLY public.robot_command
+    ADD CONSTRAINT pk_robot_command PRIMARY KEY (id);
+
+
+--
+-- Name: user_account pk_user; Type: CONSTRAINT; Schema: public; Owner: cjhorn
+--
+
+ALTER TABLE ONLY public.user_account
+    ADD CONSTRAINT pk_user PRIMARY KEY (id);
 
 
 --

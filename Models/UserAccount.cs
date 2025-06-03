@@ -6,40 +6,56 @@ using Microsoft.EntityFrameworkCore;
 
 namespace robot_controller_api.Models;
 
-[Table("robot_command")]
-public class RobotCommand
+[Table("user_account")]
+public class UserAccount
 {
     [Key]
     [Column("id")]
     public int Id { get; set; }
-    [Column("name")]
-    [StringLength(50)]
-    public string Name { get; set; } = null!;
+    [Column("password_hash")]
+    [StringLength(200)]
+    public string PasswordHash { get; set; } = null!;
+    [Column("email")]
+    [StringLength(100)]
+    public string Email { get; set; } = null!;
     [Column("description")]
     [StringLength(800)]
     public string? Description { get; set; }
-    [Column("is_move_command")]
-    public bool IsMoveCommand { get; set; }
+    [Column("first_name")]
+    [StringLength(50)]
+    public string FirstName { get; set; } = null!;
+    [Column("last_name")]
+    [StringLength(50)]
+    public string LastName { get; set; } = null!;
+    [Column("role")]
+    [StringLength(20)]
+    public string Role { get; set; } = null!;
     [Column("created_date", TypeName = "timestamp without time zone")]
     public DateTime CreatedDate { get; set; }
     [Column("modified_date", TypeName = "timestamp without time zone")]
     public DateTime ModifiedDate { get; set; }
 
-    public RobotCommand(){}
+    public UserAccount(){}
 
-    public RobotCommand(
+    public UserAccount(
         int id,
-        string name,
+        string passwordHash,
+        string email,
         string? description,
-        bool isMoveCommand,
+        string firstName,
+        string lastName,
+        string role,
         DateTime createdDate,
         DateTime modifiedDate
     )
     {
         this.Id = id;
-        this.Name = name;
+        this.PasswordHash = passwordHash;
+        this.Email = email;
         this.Description = description;
-        this.IsMoveCommand = isMoveCommand;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Role = role;
         this.CreatedDate = createdDate;
         this.ModifiedDate = modifiedDate;
     }

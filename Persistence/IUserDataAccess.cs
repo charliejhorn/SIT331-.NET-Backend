@@ -4,12 +4,12 @@ namespace robot_controller_api.Persistence;
 
 public interface IUserDataAccess
 {
-    UserModel AddUser(UserModel newUser);
+    UserAccount AddUser(UserAccount newUser);
     bool DeleteUser(int id);
-    List<UserModel> GetUsers();
-    List<UserModel> GetSpecificUsers(string role);
-    UserModel GetUserById(int id);
-    UserModel GetUserByEmail(string email);
-    UserModel UpdateUser(int id, UserUpdateDTO updatedUser);
-    UserModel UpdateUserCredentials(int id, UserLoginDTO credentials);
+    List<UserAccount> GetUsers();
+    List<UserAccount> GetSpecificUsers(string role);
+    UserAccount GetUserById(int id);
+    UserAccount GetUserByEmail(string email);
+    UserAccount UpdateUser(int id, UserUpdateDTO updatedUser);
+    UserAccount UpdateUserCredentials(int id, UserLoginDTO credentials);
 }

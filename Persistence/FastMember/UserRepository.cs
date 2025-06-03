@@ -9,29 +9,29 @@ public class UserRepository : IUserDataAccess, IRepository
 {
     private IRepository _repo => this;
 
-    public List<UserModel> GetUsers()
+    public List<UserAccount> GetUsers()
     {
-        List<UserModel> users = _repo.ExecuteReader<UserModel>("SELECT * FROM public.usermodel");
+        List<UserAccount> users = _repo.ExecuteReader<UserAccount>("SELECT * FROM user_account");
         return users;
     }
 
-    public List<UserModel> GetSpecificUsers(string role)
+    public List<UserAccount> GetSpecificUsers(string role)
     {
-        string sqlCommand = "SELECT * FROM public.usermodel WHERE role=($1)";
+        string sqlCommand = "SELECT * FROM user_account WHERE role=($1)";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = role }
         };
-        List<UserModel> users = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams);
+        List<UserAccount> users = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams);
         return users;
     }
 
-    public UserModel GetUserById(int id)
+    public UserAccount GetUserById(int id)
     {
-        string sqlCommand = "SELECT * FROM public.usermodel WHERE id=($1)";
+        string sqlCommand = "SELECT * FROM user_account WHERE id=($1)";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = id }
         };
-        List<UserModel> users = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams);
+        List<UserAccount> users = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams);
         if (users.Count == 0)
         {
             throw new NotFoundException(id);
@@ -39,13 +39,13 @@ public class UserRepository : IUserDataAccess, IRepository
         return users.First();
     }
 
-    public UserModel GetUserByEmail(string email)
+    public UserAccount GetUserByEmail(string email)
     {
-        string sqlCommand = "SELECT * FROM public.usermodel WHERE email=($1)";
+        string sqlCommand = "SELECT * FROM user_account WHERE email=($1)";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = email }
         };
-        List<UserModel> users = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams);
+        List<UserAccount> users = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams);
         if (users.Count == 0)
         {
             throw new NotFoundException(email, "email");
@@ -53,14 +53,14 @@ public class UserRepository : IUserDataAccess, IRepository
         return users.First();
     }
 
-    public UserModel AddUser(UserModel newUser)
+    public UserAccount AddUser(UserAccount newUser)
     {
         // check for duplicate email first
-        string checkSqlCommand = "SELECT * FROM public.usermodel WHERE email=($1)";
+        string checkSqlCommand = "SELECT * FROM user_account WHERE email=($1)";
         NpgsqlParameter[] checkSqlParams = new NpgsqlParameter[]{
             new() { Value = newUser.Email }
         };
-        List<UserModel> existingUsers = _repo.ExecuteReader<UserModel>(checkSqlCommand, checkSqlParams);
+        List<UserAccount> existingUsers = _repo.ExecuteReader<UserAccount>(checkSqlCommand, checkSqlParams);
         if (existingUsers.Count > 0)
             throw new DuplicateEmailException(newUser.Email);
 
@@ -72,7 +72,7 @@ public class UserRepository : IUserDataAccess, IRepository
 
 
         // send creation query
-        string sqlCommand = "INSERT INTO usermodel (email, firstname, lastname, passwordhash, description, role, createddate, modifieddate) VALUES(($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8)) RETURNING *;";
+        string sqlCommand = "INSERT INTO user_account (email, first_name, last_name, password_hash, description, role, created_date, modified_date) VALUES(($1), ($2), ($3), ($4), ($5), ($6), ($7), ($8)) RETURNING *;";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = newUser.Email },
             new() { Value = newUser.FirstName },
@@ -83,16 +83,16 @@ public class UserRepository : IUserDataAccess, IRepository
             new() { Value = newUser.CreatedDate },
             new() { Value = newUser.ModifiedDate }
         };
-        UserModel result = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams).Single();
+        UserAccount result = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams).Single();
         return result;
     }
 
-    public UserModel UpdateUser(int id, UserUpdateDTO updatedUser)
+    public UserAccount UpdateUser(int id, UserUpdateDTO updatedUser)
     {
         // check if user exists first
         GetUserById(id); // this will throw NotFoundException if user doesn't exist
 
-        string sqlCommand = "UPDATE usermodel SET firstname=($1), lastname=($2), description=($3), role=($4), modifieddate=($5) WHERE id=($6) RETURNING *;";
+        string sqlCommand = "UPDATE user_account SET first_name=($1), last_name=($2), description=($3), role=($4), modified_date=($5) WHERE id=($6) RETURNING *;";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = updatedUser.FirstName },
             new() { Value = updatedUser.LastName },
@@ -101,34 +101,34 @@ public class UserRepository : IUserDataAccess, IRepository
             new() { Value = DateTime.Now },
             new() { Value = id },
         };
-        UserModel result = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams).Single();
+        UserAccount result = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams).Single();
         return result;
     }
 
-    public UserModel UpdateUserCredentials(int id, UserLoginDTO credentials)
+    public UserAccount UpdateUserCredentials(int id, UserLoginDTO credentials)
     {
         // check if user exists first
         GetUserById(id); // this will throw NotFoundException if user doesn't exist
 
         // check for duplicate email (unless the email belongs to the current user)
-        string checkSqlCommand = "SELECT * FROM public.usermodel WHERE email=($1) AND id!=($2)";
+        string checkSqlCommand = "SELECT * FROM user_account WHERE email=($1) AND id!=($2)";
         NpgsqlParameter[] checkSqlParams = new NpgsqlParameter[]{
             new() { Value = credentials.Email },
             new() { Value = id }
         };
-        List<UserModel> existingUsers = _repo.ExecuteReader<UserModel>(checkSqlCommand, checkSqlParams);
+        List<UserAccount> existingUsers = _repo.ExecuteReader<UserAccount>(checkSqlCommand, checkSqlParams);
         if (existingUsers.Count > 0)
             throw new DuplicateEmailException(credentials.Email);
 
         // update email and password
-        string sqlCommand = "UPDATE usermodel SET email=($1), passwordhash=($2), modifieddate=($3) WHERE id=($4) RETURNING *;";
+        string sqlCommand = "UPDATE user_account SET email=($1), password_hash=($2), modified_date=($3) WHERE id=($4) RETURNING *;";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() { Value = credentials.Email },
             new() { Value = PasswordService.HashPassword(credentials.Password) },
             new() { Value = DateTime.Now },
             new() { Value = id },
         };
-        UserModel result = _repo.ExecuteReader<UserModel>(sqlCommand, sqlParams).Single();
+        UserAccount result = _repo.ExecuteReader<UserAccount>(sqlCommand, sqlParams).Single();
         return result;
     }
 
@@ -137,7 +137,7 @@ public class UserRepository : IUserDataAccess, IRepository
         // check if user exists first
         GetUserById(id); // this will throw NotFoundException if user doesn't exist
 
-        string sqlCommand = "DELETE FROM usermodel WHERE id=($1)";
+        string sqlCommand = "DELETE FROM user_account WHERE id=($1)";
         NpgsqlParameter[] sqlParams = new NpgsqlParameter[]{
             new() {Value = id}
         };
