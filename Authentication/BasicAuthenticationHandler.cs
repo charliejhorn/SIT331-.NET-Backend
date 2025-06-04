@@ -5,9 +5,9 @@ using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Logging;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using System.Security.Claims;
 using robot_controller_api.Persistence;
 using robot_controller_api.Models;
-using System.Security.Claims;
 
 namespace robot_controller_api.Authentication;
 
@@ -19,10 +19,11 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         IOptionsMonitor<AuthenticationSchemeOptions> options, 
         ILoggerFactory logger, 
         UrlEncoder encoder, 
-        ISystemClock clock) 
+        ISystemClock clock,
+        IUserDataAccess usersRepo) 
         : base(options, logger, encoder, clock)
     { 
-        _usersRepo = new UserRepository();
+        _usersRepo = usersRepo;
     }
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
@@ -73,9 +74,9 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
         var password = credentials[1];
 
         // check if the user exists in the database
-        UserModel? user = _usersRepo.GetUsers().FirstOrDefault(user => user.Email == email);
+        UserAccount? user = _usersRepo.GetUsers().FirstOrDefault(user => user.Email == email);
         
-        if(user == null)
+        if (user == null)
         {
             Response.StatusCode = 401;
             return Task.FromResult(AuthenticateResult.Fail("Authentication failed: no user with that email exists."));

@@ -7,26 +7,27 @@ namespace robot_controller_api.Persistence;
 public class RobotCommandADO : IRobotCommandDataAccess
 {
     // Connection string is usually set in a config file for the ease of change.
-    private const string CONNECTION_STRING = "Host=localhost;Username=cjhorn;Password=;Database=sit331";
+    private const string CONNECTION_STRING = "Host=localhost; Username=cjhorn; Password=; Database=sit331";
 
     public List<RobotCommand> GetRobotCommands()
     {
         List<RobotCommand> robotCommands = new List<RobotCommand>();
-        using var conn = new NpgsqlConnection(CONNECTION_STRING);
+        using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using var cmd = new NpgsqlCommand("SELECT * FROM robotcommand", conn);
-        using var dr = cmd.ExecuteReader();
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM robot_command", conn);
+        using NpgsqlDataReader dr = cmd.ExecuteReader();
         while (dr.Read())
         {
             // read values off the data reader and create a new robotCommand here and then add it to the result list.
-            int id = (int)dr["id"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            bool isMoveCommand = (bool)dr["ismovecommand"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            RobotCommand command = new RobotCommand(id, name, isMoveCommand, createdDate, modifiedDate, description);
+            RobotCommand command = new RobotCommand
+            {
+                Id = (int)dr["id"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                IsMoveCommand = (bool)dr["is_move_command"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
             robotCommands.Add(command);
         }
         return robotCommands;
@@ -35,21 +36,22 @@ public class RobotCommandADO : IRobotCommandDataAccess
     public List<RobotCommand> GetMoveRobotCommands()
     {
         List<RobotCommand> robotCommands = new List<RobotCommand>();
-        using var conn = new NpgsqlConnection(CONNECTION_STRING);
+        using NpgsqlConnection conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using var cmd = new NpgsqlCommand("SELECT * FROM robotcommand WHERE ismovecommand = TRUE", conn);
-        using var dr = cmd.ExecuteReader();
+        using NpgsqlCommand cmd = new NpgsqlCommand("SELECT * FROM robot_command WHERE is_move_command = TRUE", conn);
+        using NpgsqlDataReader dr = cmd.ExecuteReader();
         while (dr.Read())
         {
             // read values off the data reader and create a new robotCommand here and then add it to the result list.
-            int id = (int)dr["id"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            bool isMoveCommand = (bool)dr["ismovecommand"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            RobotCommand command = new RobotCommand(id, name, isMoveCommand, createdDate, modifiedDate, description);
+            RobotCommand command = new RobotCommand
+            {
+                Id = (int)dr["id"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                IsMoveCommand = (bool)dr["is_move_command"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
             robotCommands.Add(command);
         }
         return robotCommands;
@@ -60,7 +62,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
         RobotCommand? command = null;
         using var conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using var cmd = new NpgsqlCommand("SELECT * FROM robotcommand WHERE id = $1", conn)
+        using var cmd = new NpgsqlCommand("SELECT * FROM robot_command WHERE id = $1", conn)
         {
             Parameters = { new() { Value = id } }
         };
@@ -68,14 +70,15 @@ public class RobotCommandADO : IRobotCommandDataAccess
         if (dr.Read())
         {
             // read values off the data reader and create a new robotCommand here and then return it.
-            int commandId = (int)dr["id"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            bool isMoveCommand = (bool)dr["ismovecommand"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            command = new RobotCommand(commandId, name, isMoveCommand, createdDate, modifiedDate, description);
+            command = new RobotCommand
+            {
+                Id = (int)dr["id"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                IsMoveCommand = (bool)dr["is_move_command"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
         if (command == null)
             throw new NotFoundException(id);
@@ -89,7 +92,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
         using var conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
         
-        using var checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM robotcommand WHERE name = $1", conn)
+        using var checkCmd = new NpgsqlCommand("SELECT COUNT(*) FROM robot_command WHERE name = $1", conn)
         {
             Parameters = { new() { Value = newCommand.Name } }
         };
@@ -100,7 +103,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
 
 
         // insert new command
-        using var cmd = new NpgsqlCommand("INSERT INTO robotcommand (name, description, ismovecommand, createddate, modifieddate) VALUES(($1), ($2), ($3), ($4), ($5)) RETURNING *;", conn)
+        using var cmd = new NpgsqlCommand("INSERT INTO robot_command (name, description, is_move_command, created_date, modified_date) VALUES(($1), ($2), ($3), ($4), ($5)) RETURNING *;", conn)
         {
             Parameters =
             {
@@ -119,14 +122,15 @@ public class RobotCommandADO : IRobotCommandDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new robotCommand
-            int id = (int)dr["id"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            bool isMoveCommand = (bool)dr["ismovecommand"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedCommand = new RobotCommand(id, name, isMoveCommand, createdDate, modifiedDate, description);
+            returnedCommand = new RobotCommand
+            {
+                Id = (int)dr["id"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                IsMoveCommand = (bool)dr["is_move_command"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
         
         if (returnedCommand == null)
@@ -151,7 +155,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
         // send db query
         using var conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
-        using var cmd = new NpgsqlCommand("UPDATE robotcommand SET name=($1), description=($2), ismovecommand=($3), modifieddate=($4) WHERE id=($5) RETURNING *;", conn)
+        using var cmd = new NpgsqlCommand("UPDATE robot_command SET name=($1), description=($2), is_move_command=($3), modified_date=($4) WHERE id=($5) RETURNING *;", conn)
         {
             Parameters =
             {
@@ -169,14 +173,15 @@ public class RobotCommandADO : IRobotCommandDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new robotCommand
-            int commandId = (int)dr["id"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            bool isMoveCommand = (bool)dr["ismovecommand"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedCommand = new RobotCommand(commandId, name, isMoveCommand, createdDate, modifiedDate, description);
+            returnedCommand = new RobotCommand
+            {
+                Id = (int)dr["id"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                IsMoveCommand = (bool)dr["is_move_command"],
+                CreatedDate = (DateTime)dr["created_date"],
+                ModifiedDate = (DateTime)dr["modified_date"]
+            };
         }
 
         if (returnedCommand == null)
@@ -193,7 +198,7 @@ public class RobotCommandADO : IRobotCommandDataAccess
         using var conn = new NpgsqlConnection(CONNECTION_STRING);
         conn.Open();
 
-        using var cmd = new NpgsqlCommand($"DELETE FROM robotcommand WHERE id=($1)", conn)
+        using var cmd = new NpgsqlCommand($"DELETE FROM robot_command WHERE id=($1)", conn)
         {
             Parameters =
             {

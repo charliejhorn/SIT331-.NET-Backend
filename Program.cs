@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.AspNetCore.Authentication;
 using robot_controller_api.Persistence;
 using robot_controller_api.Authentication;
+using robot_controller_api.Contexts;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Title = "Robot Controller API",
+        Version = "v1.0.0",
         Description = "New backend service that provides resources for the Moon robot simulator.",
         Contact = new OpenApiContact
         {
@@ -26,9 +28,15 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 
+    options.AddServer(new OpenApiServer
+    {
+        Url = "http://localhost:5152", 
+        Description = "Development HTTP"
+    });
+
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory,
-xmlFilename));
+        xmlFilename));
 });
 
 

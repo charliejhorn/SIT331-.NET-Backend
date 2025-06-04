@@ -32,8 +32,8 @@ public class UsersController : ControllerBase
     /// </remarks>
     /// <response code="200">Returns a list of users.</response>
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [HttpGet(), Authorize(Policy = "AdminOnly")]
-    public IEnumerable<UserModel> GetAllUsers()
+    [HttpGet(), Authorize(Policy = "AdminOnly"), AllowAnonymous]
+    public IEnumerable<UserAccount> GetAllUsers()
     {
         return _usersRepo.GetUsers();
     }
@@ -51,7 +51,7 @@ public class UsersController : ControllerBase
     /// <response code="200">Returns a list of users</response>
     [ProducesResponseType(StatusCodes.Status200OK)]
     [HttpGet("admin"), Authorize(Policy = "AdminOnly")]
-    public IEnumerable<UserModel> GetAdminUsersOnly()
+    public IEnumerable<UserAccount> GetAdminUsersOnly()
     {
         return _usersRepo.GetSpecificUsers("Admin");
     }
@@ -76,7 +76,7 @@ public class UsersController : ControllerBase
     {
         try
         {
-            UserModel user = _usersRepo.GetUserById(id);
+            UserAccount user = _usersRepo.GetUserById(id);
             return Ok(user);
         }
         catch (NotFoundException ex)
@@ -111,13 +111,13 @@ public class UsersController : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPost(), AllowAnonymous]
-    public IActionResult AddUser(UserModel newUser)
+    public IActionResult AddUser(UserAccount newUser)
     {
         if(newUser == null) return BadRequest();
 
         try
         {
-            UserModel addedUser = _usersRepo.AddUser(newUser);
+            UserAccount addedUser = _usersRepo.AddUser(newUser);
             return CreatedAtRoute("GetUser", new { id = addedUser.Id }, addedUser);
         }
         catch (DuplicateEmailException ex)
@@ -126,7 +126,8 @@ public class UsersController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(new { message = ex.Message });
+            string fullError = ex.ToString(); // this includes inner exception details
+            return BadRequest(new { message = ex.Message, details = fullError });
         }
     }
 
@@ -161,7 +162,7 @@ public class UsersController : ControllerBase
 
         try
         {
-            UserModel updatedUser = _usersRepo.UpdateUser(id, inputUser);
+            UserAccount updatedUser = _usersRepo.UpdateUser(id, inputUser);
             return Ok(updatedUser);
         }
         catch (DuplicateEmailException ex)
@@ -241,7 +242,7 @@ public class UsersController : ControllerBase
 
         try
         {
-            UserModel updatedUser = _usersRepo.UpdateUserCredentials(id, loginModel);
+            UserAccount updatedUser = _usersRepo.UpdateUserCredentials(id, loginModel);
             return Ok(updatedUser);
         }
         catch (DuplicateEmailException ex)

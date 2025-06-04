@@ -19,15 +19,16 @@ public class MapADO : IMapDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new Map here and then add it to the result list.
-            int id = (int)dr["id"];
-            int columns = (int)dr["columns"];
-            int rows = (int)dr["rows"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            Map map = new Map(id, columns, rows, name, createdDate, modifiedDate, description);
+            Map map = new Map
+            {
+                Id = (int)dr["id"],
+                Columns = (int)dr["columns"],
+                Rows = (int)dr["rows"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
             Maps.Add(map);
         }
         return Maps;
@@ -43,15 +44,16 @@ public class MapADO : IMapDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new Map here and then add it to the result list.
-            int id = (int)dr["id"];
-            int columns = (int)dr["columns"];
-            int rows = (int)dr["rows"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            Map map = new Map(id, columns, rows, name, createdDate, modifiedDate, description);
+            Map map = new Map
+            {
+                Id = (int)dr["id"],
+                Columns = (int)dr["columns"],
+                Rows = (int)dr["rows"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
             Maps.Add(map);
         }
         return Maps;
@@ -70,15 +72,16 @@ public class MapADO : IMapDataAccess
         if (dr.Read())
         {
             // read values off the data reader and create a new Map
-            int mapId = (int)dr["id"];
-            int columns = (int)dr["columns"];
-            int rows = (int)dr["rows"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            map = new Map(mapId, columns, rows, name, createdDate, modifiedDate, description);
+            map = new Map
+            {
+                Id = (int)dr["id"],
+                Columns = (int)dr["columns"],
+                Rows = (int)dr["rows"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
         }
         if (map == null)
             throw new NotFoundException(id);
@@ -125,15 +128,16 @@ public class MapADO : IMapDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new Map here and then add it to the result list.
-            int id = (int)dr["id"];
-            int columns = (int)dr["columns"];
-            int rows = (int)dr["rows"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedMap = new Map(id, columns, rows, name, createdDate, modifiedDate, description);
+            returnedMap = new Map
+            {
+                Id = (int)dr["id"],
+                Columns = (int)dr["columns"],
+                Rows = (int)dr["rows"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
         }
 
         if (returnedMap == null)
@@ -177,15 +181,16 @@ public class MapADO : IMapDataAccess
         while (dr.Read())
         {
             // read values off the data reader and create a new Map
-            int mapId = (int)dr["id"];
-            int columns = (int)dr["columns"];
-            int rows = (int)dr["rows"];
-            string name = (string)dr["name"];
-            string? description = dr["description"] == DBNull.Value ? null : (string)dr["description"];
-            DateTime createdDate = (DateTime)dr["createddate"];
-            DateTime modifiedDate = (DateTime)dr["modifieddate"];
-
-            returnedMap = new Map(mapId, columns, rows, name, createdDate, modifiedDate, description);
+            returnedMap = new Map
+            {
+                Id = (int)dr["id"],
+                Columns = (int)dr["columns"],
+                Rows = (int)dr["rows"],
+                Name = (string)dr["name"],
+                Description = dr["description"] == DBNull.Value ? null : (string)dr["description"],
+                CreatedDate = (DateTime)dr["createddate"],
+                ModifiedDate = (DateTime)dr["modifieddate"]
+            };
         }
 
         if (returnedMap == null)

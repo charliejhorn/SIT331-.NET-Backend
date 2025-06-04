@@ -1,0 +1,26 @@
+﻿{{#if lines}}
+    public {{class}}()
+    {
+{{#each lines}}
+        {{property-name}} = new HashSet<{{property-type}}>();
+{{/each}}
+
+    }
+
+{{/if}}
+
+{{!-- constructor with no parameters --}}
+    public {{class}}(){}
+
+{{!-- constructor with all properties as parameters --}}
+    public {{class}}(
+        {{#each properties}}
+        {{property-type}} {{camel-case property-name}}{{#unless @last}},{{/unless}}
+        {{/each}}
+    )
+    {
+        {{#each properties}}
+        this.{{property-name}} = {{camel-case property-name}};
+        {{/each}}
+    }
+

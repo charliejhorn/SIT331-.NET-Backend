@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using robot_controller_api.Models;
 using robot_controller_api.Exceptions;
+using robot_controller_api.Contexts;
 
 namespace robot_controller_api.Persistence;
 
