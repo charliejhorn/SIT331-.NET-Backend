@@ -39,8 +39,10 @@ public class MapEF : IMapDataAccess
         if (nameExists)
             throw new DuplicateNameException(newMap.Name);
 
-        newMap.CreatedDate = DateTime.Now;
-        newMap.ModifiedDate = DateTime.Now;
+        // Use DateTime.UtcNow to avoid timezone serialization issues
+        var utcNow = DateTime.UtcNow;
+        newMap.CreatedDate = utcNow;
+        newMap.ModifiedDate = utcNow;
 
         _context.Maps.Add(newMap);
         _context.SaveChanges();
@@ -66,7 +68,7 @@ public class MapEF : IMapDataAccess
         target.Description = updatedMap.Description;
         target.Columns = updatedMap.Columns;
         target.Rows = updatedMap.Rows;
-        target.ModifiedDate = DateTime.Now;
+        target.ModifiedDate = DateTime.UtcNow;
 
         // push changes to db and return the updated map
         _context.SaveChanges();
@@ -80,6 +82,13 @@ public class MapEF : IMapDataAccess
 
         _context.Maps.Remove(existingMap);
         int affectedRows = _context.SaveChanges();
-        return affectedRows > 0;
+        
+        // ensure exactly one row was deleted
+        if (affectedRows != 1)
+        {
+            throw new InvalidOperationException($"Expected to delete 1 row, but {affectedRows} rows were affected.");
+        }
+        
+        return true;
     }
 }

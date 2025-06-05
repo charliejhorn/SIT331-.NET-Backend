@@ -217,7 +217,12 @@ public class MapADO : IMapDataAccess
 
         int affectedRows = cmd.ExecuteNonQuery();
 
-        if (affectedRows == 1) return true;
-        else return false;
+        // ensure exactly one row was deleted
+        if (affectedRows != 1)
+        {
+            throw new InvalidOperationException($"Expected to delete 1 row, but {affectedRows} rows were affected.");
+        }
+        
+        return true;
     }
 }

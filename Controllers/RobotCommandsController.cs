@@ -121,7 +121,8 @@ public class RobotCommandsController : ControllerBase
         }
         catch (Exception ex)
         {
-            return BadRequest(new { message = ex.Message });
+            string fullError = ex.ToString(); // this includes inner exception details
+            return BadRequest(new { message = ex.Message, details = fullError });
         }
     }
 
@@ -188,6 +189,7 @@ public class RobotCommandsController : ControllerBase
     /// </remarks>
     /// <response code="204">If the robot command is deleted, returns no content.</response>
     /// <response code="404">If a robot command with the provided ID can't be found</response>
+    /// <response code="500">If an unexpected database error occurs during deletion.</response>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpDelete("{id}"), Authorize(Policy = "AdminOnly")]
@@ -196,13 +198,16 @@ public class RobotCommandsController : ControllerBase
         try
         {
             bool success = _robotCommandsRepo.DeleteRobotCommand(id);
-
-            if (success) return NoContent();
-            else return NotFound();
+            return NoContent(); // deletion was successful
         }
         catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
+        }
+        catch (InvalidOperationException ex)
+        {
+            // database operation failed unexpectedly
+            return StatusCode(500, new { message = "An error occurred while deleting the command.", details = ex.Message });
         }
     }
 

@@ -96,6 +96,13 @@ public class MapRepository : IMapDataAccess, IRepository
             new() {Value = id}
         };
         int affectedRows = _repo.ExecuteNonQuery(sqlCommand, sqlParams);
-        return affectedRows > 0;
+        
+        // ensure exactly one row was deleted
+        if (affectedRows != 1)
+        {
+            throw new InvalidOperationException($"Expected to delete 1 row, but {affectedRows} rows were affected.");
+        }
+        
+        return true;
     }
 }
