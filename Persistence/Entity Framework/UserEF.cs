@@ -55,8 +55,10 @@ public class UserEF : IUserDataAccess
         // hash password
         newUser.PasswordHash = PasswordService.HashPassword(newUser.PasswordHash);
 
-        newUser.CreatedDate = DateTime.Now;
-        newUser.ModifiedDate = DateTime.Now;
+        // Use DateTime.UtcNow to avoid timezone serialization issues
+        var utcNow = DateTime.UtcNow;
+        newUser.CreatedDate = utcNow;
+        newUser.ModifiedDate = utcNow;
 
         _context.UserAccounts.Add(newUser);
         _context.SaveChanges();
@@ -75,7 +77,7 @@ public class UserEF : IUserDataAccess
         existingUser.LastName = updatedUser.LastName;
         existingUser.Description = updatedUser.Description;
         existingUser.Role = updatedUser.Role;
-        existingUser.ModifiedDate = DateTime.Now;
+        existingUser.ModifiedDate = DateTime.UtcNow;
 
         _context.SaveChanges();
         return existingUser;
@@ -98,7 +100,7 @@ public class UserEF : IUserDataAccess
         // update email and password
         existingUser.Email = credentials.Email;
         existingUser.PasswordHash = PasswordService.HashPassword(credentials.Password);
-        existingUser.ModifiedDate = DateTime.Now;
+        existingUser.ModifiedDate = DateTime.UtcNow;
 
         _context.SaveChanges();
         return existingUser;
@@ -106,14 +108,18 @@ public class UserEF : IUserDataAccess
 
     public bool DeleteUser(int id)
     {
-        UserAccount? user = _context.UserAccounts.Find(id);
-        if (user == null)
-        {
-            return false;
-        }
+        // check if user exists first
+        UserAccount existingUser = GetUserById(id); // this will throw if not found
 
-        _context.UserAccounts.Remove(user);
+        _context.UserAccounts.Remove(existingUser);
         int affectedRows = _context.SaveChanges();
-        return affectedRows > 0;
+        
+        // ensure exactly one row was deleted
+        if (affectedRows != 1)
+        {
+            throw new InvalidOperationException($"Expected to delete 1 row, but {affectedRows} rows were affected.");
+        }
+        
+        return true;
     }
 }

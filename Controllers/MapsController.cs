@@ -174,24 +174,34 @@ public class MapsController : ControllerBase
     ///
     ///     DELETE /api/maps/1
     ///
-    /// </remarks>
+    /// </remarks>    
     /// <response code="204">If the map is deleted, returns no content.</response>
     /// <response code="404">If a map with the provided ID can't be found.</response>
+    /// <response code="500">If an unexpected database error occurs during deletion.</response>
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpDelete("{id}"), Authorize(Policy = "AdminOnly")]
     public IActionResult DeleteMap(int id)
     {
         try
         {
             bool success = _mapsRepo.DeleteMap(id);
-
-            if (success) return NoContent();
-            else return NotFound();
+            return NoContent(); // deletion was successful
         }
         catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
         }
-    }    /// <summary>
+        catch (InvalidOperationException ex)
+        {
+            // database operation failed unexpectedly
+            return StatusCode(500, new { message = "An error occurred while deleting the map.", details = ex.Message });
+        }
+    }
+
+
+    /// <summary>
     /// Test if a coordinate exists on a map.
     /// </summary>
     /// <param name="id">The ID of the targeted map.</param>

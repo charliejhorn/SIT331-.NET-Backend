@@ -32,7 +32,7 @@ public class UsersController : ControllerBase
     /// </remarks>
     /// <response code="200">Returns a list of users.</response>
     [ProducesResponseType(StatusCodes.Status200OK)]
-    [HttpGet(), Authorize(Policy = "AdminOnly"), AllowAnonymous]
+    [HttpGet(), Authorize(Policy = "AdminOnly")]
     public IEnumerable<UserAccount> GetAllUsers()
     {
         return _usersRepo.GetUsers();
@@ -193,21 +193,26 @@ public class UsersController : ControllerBase
     /// </remarks>
     /// <response code="204">If the user is deleted, returns no content.</response>
     /// <response code="404">If a user with the provided ID can't be found</response>
+    /// <response code="500">If an unexpected database error occurs during deletion.</response>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     [HttpDelete("{id}"), Authorize(Policy = "SelfOrAdmin")]
     public IActionResult DeleteUser(int id)
     {
         try
         {
             bool success = _usersRepo.DeleteUser(id);
-
-            if (success) return NoContent();
-            else return NotFound();
+            return NoContent(); // deletion was successful
         }
         catch (NotFoundException ex)
         {
             return NotFound(new { message = ex.Message });
+        }
+        catch (InvalidOperationException ex)
+        {
+            // database operation failed unexpectedly
+            return StatusCode(500, new { message = "An error occurred while deleting the user.", details = ex.Message });
         }
     }
 

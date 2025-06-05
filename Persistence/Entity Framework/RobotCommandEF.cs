@@ -39,8 +39,10 @@ public class RobotCommandEF : IRobotCommandDataAccess
         if (nameExists)
             throw new DuplicateNameException(newCommand.Name);
 
-        newCommand.CreatedDate = DateTime.Now;
-        newCommand.ModifiedDate = DateTime.Now;
+        // Use DateTime.UtcNow to avoid timezone serialization issues
+        var utcNow = DateTime.UtcNow;
+        newCommand.CreatedDate = utcNow;
+        newCommand.ModifiedDate = utcNow;
 
         _context.RobotCommands.Add(newCommand);
         _context.SaveChanges();
@@ -65,7 +67,7 @@ public class RobotCommandEF : IRobotCommandDataAccess
         target.Name = inputCommand.Name;
         target.Description = inputCommand.Description;
         target.IsMoveCommand = inputCommand.IsMoveCommand;
-        target.ModifiedDate = DateTime.Now;
+        target.ModifiedDate = DateTime.UtcNow;
 
         // push changes to db and return the updated command
         _context.SaveChanges();
@@ -79,6 +81,13 @@ public class RobotCommandEF : IRobotCommandDataAccess
 
         _context.RobotCommands.Remove(existingCommand);
         int affectedRows = _context.SaveChanges();
-        return affectedRows > 0;
+        
+        // ensure exactly one row was deleted
+        if (affectedRows != 1)
+        {
+            throw new InvalidOperationException($"Expected to delete 1 row, but {affectedRows} rows were affected.");
+        }
+        
+        return true;
     }
 }
