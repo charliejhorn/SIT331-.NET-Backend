@@ -20,9 +20,9 @@ public class RobotCommand
     public string? Description { get; set; }
     [Column("is_move_command")]
     public bool IsMoveCommand { get; set; }
-    [Column("created_date", TypeName = "timestamp without time zone")]
+    [Column("created_date")]
     public DateTime CreatedDate { get; set; }
-    [Column("modified_date", TypeName = "timestamp without time zone")]
+    [Column("modified_date")]
     public DateTime ModifiedDate { get; set; }
 
     public RobotCommand(){}

@@ -1,0 +1,17 @@
+type: environment.insomnia.rest/5.0
+name: SIT331 Environment
+meta:
+  id: wrk_3b4c66c1cd8c4e0099095fca6a342fe0
+  created: 1748925288365
+  modified: 1748925288365
+  description: ""
+environments:
+  name: Base Environment
+  meta:
+    id: env_359083d8204af86ce76eae10c746b40b3c6f9e55
+    created: 1748925288367
+    modified: 1749185768970
+    isPrivate: false
+  data:
+    api-host: localhost
+    port: "5152"

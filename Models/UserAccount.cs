@@ -30,9 +30,9 @@ public class UserAccount
     [Column("role")]
     [StringLength(20)]
     public string Role { get; set; } = null!;
-    [Column("created_date", TypeName = "timestamp without time zone")]
+    [Column("created_date")]
     public DateTime CreatedDate { get; set; }
-    [Column("modified_date", TypeName = "timestamp without time zone")]
+    [Column("modified_date")]
     public DateTime ModifiedDate { get; set; }
 
     public UserAccount(){}

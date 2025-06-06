@@ -101,9 +101,13 @@ public class RobotCommandsController : ControllerBase
     /// </remarks>
     /// <response code="201">Returns the newly created robot command</response>
     /// <response code="400">If the provided robot command is null</response>
+    /// <response code="401">If no authentication is provided</response>
+    /// <response code="403">If the user is not an admin</response>
     /// <response code="409">If a robot command with the same name already exists.</response>
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPost(), Authorize(Policy = "AdminOnly")]
     public IActionResult AddRobotCommand(RobotCommand newCommand)
@@ -145,10 +149,14 @@ public class RobotCommandsController : ControllerBase
     /// </remarks>
     /// <response code="200">Returns the updated robot command.</response>
     /// <response code="400">If the updated robot command provided is null, or if the robot command could not be updated.</response>
+    /// <response code="401">If no authentication is provided</response>
+    /// <response code="403">If the user is not an admin</response>
     /// <response code="404">If a robot command with the provided ID can't be found.</response>
     /// <response code="409">If a robot command with the same name as the new name provided already exists.</response>
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPut("{id}"), Authorize(Policy = "AdminOnly")]
@@ -186,11 +194,15 @@ public class RobotCommandsController : ControllerBase
     ///
     ///     DELETE /api/robot-commands/1
     ///
-    /// </remarks>
+    /// </remarks>    
     /// <response code="204">If the robot command is deleted, returns no content.</response>
+    /// <response code="401">If no authentication is provided</response>
+    /// <response code="403">If the user is not an admin</response>
     /// <response code="404">If a robot command with the provided ID can't be found</response>
     /// <response code="500">If an unexpected database error occurs during deletion.</response>
     [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [HttpDelete("{id}"), Authorize(Policy = "AdminOnly")]
     public IActionResult DeleteRobotCommand(int id)
@@ -228,66 +240,75 @@ public class RobotCommandsController : ControllerBase
     /// </remarks>
     /// <response code="200">Returns the patched robot command.</response>
     /// <response code="400">If the new robot command data could not be parsed, or if the robot command could not be updated.</response>
+    /// <response code="401">If no authentication is provided</response>
+    /// <response code="403">If the user is not an admin</response>
     /// <response code="404">If a robot command with the provided ID can't be found.</response>
     /// <response code="409">If a robot command with the same name as the new name provided already exists.</response>
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status403Forbidden)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status409Conflict)]
     [HttpPatch("{id}"), Authorize(Policy = "AdminOnly")]
     public async Task<IActionResult> PatchRobotCommand(int id)
     {
-        // fetch existing command
-        List<RobotCommand> commands = _robotCommandsRepo.GetRobotCommands();
-        RobotCommand? existingCommand = commands.Find(command => command.Id == id);
-        if (existingCommand == null) return NotFound();
-
         // enable buffering so we can read the request body
         Request.EnableBuffering();
         Request.Body.Position = 0;
         
         using var reader = new StreamReader(Request.Body, Encoding.UTF8);
         var requestBody = await reader.ReadToEndAsync();
-        
-        try 
+
+        try
         {
+            RobotCommand target = _robotCommandsRepo.GetRobotCommandById(id);
+
             // parse the JSON to see which fields were included
             using JsonDocument doc = JsonDocument.Parse(requestBody);
             JsonElement root = doc.RootElement;
-            
+
             // for each field included, make change to existingCommand
             if (root.TryGetProperty("name", out JsonElement nameElement))
             {
-                existingCommand.Name = nameElement.GetString();
+                target.Name = nameElement.GetString()!;
             }
-            
+
             if (root.TryGetProperty("description", out JsonElement descElement))
             {
-                existingCommand.Description = descElement.ValueKind == JsonValueKind.Null ? 
+                target.Description = descElement.ValueKind == JsonValueKind.Null ?
                     null : descElement.GetString();
             }
-            
-            if (root.TryGetProperty("ismovecommand", out JsonElement moveElement))
+
+            // check for both property name variations
+            if (root.TryGetProperty("ismovecommand", out JsonElement moveElement) || 
+                root.TryGetProperty("isMoveCommand", out moveElement))
             {
-                existingCommand.IsMoveCommand = moveElement.GetBoolean();
+                target.IsMoveCommand = moveElement.GetBoolean();
             }
-            
-            // check name doesn't exist
-            if(commands.Exists(command => command.Id != id && command.Name == existingCommand.Name)) return Conflict("Name already exists.");
 
-            existingCommand.ModifiedDate = DateTime.UtcNow;
-            
             // push change to database
-            RobotCommand? returnedCommand = _robotCommandsRepo.UpdateRobotCommand(existingCommand.Id, existingCommand);
-
-            if (returnedCommand == null) return BadRequest("RobotCommand could not be patched.");
+            RobotCommand returnedCommand = _robotCommandsRepo.UpdateRobotCommand(id, target);
 
             return Ok(returnedCommand);
+        }
+        catch (DuplicateNameException ex)
+        {
+            return Conflict(new { message = ex.Message });
+        }
+        catch (NotFoundException ex)
+        {
+            return NotFound(new { message = ex.Message });
         }
         catch (JsonException ex)
         {
             Console.WriteLine($"JSON parsing error: {ex.Message}");
-            return BadRequest("Invalid JSON format");
+            return BadRequest(new { message = "Invalid JSON format" });
+        }
+        catch (Exception ex)
+        {
+            string fullError = ex.ToString(); // this includes inner exception details
+            return BadRequest(new { message = ex.Message, details = fullError });
         }
     }
 }

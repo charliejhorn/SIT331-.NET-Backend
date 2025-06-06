@@ -1,0 +1,4254 @@
+› Data store configured from app data directory  at /Users/cjhorn/Library/Application Support/Insomnia
+› Load workspace with identifier wrk_459aa2 from data store
+› Found 1.
+› Load sub environment with identifier env_66b143 from data store
+Running request: Create - Created (201) req_eeb45cf1c25c4fce9725d532a348d71a
+[network] Response succeeded req=req_eeb45cf1c25c4fce9725d532a348d71a status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: 🔧 Setting up test users...
+log: ✓ Test user credentials prepared
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:12.914Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 96
+
+{"name":"TEST_NAME_1749188832884","isMoveCommand":false,"description":"TEST_DESC_1749188832884"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:13 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/robot-commands/11
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 204 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid robotCommand
+✅ Check if returned robotCommand has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Create - Bad Request (400) req_139a0e181fdd45adbf5c8ab3b8b63bba
+[network] Response succeeded req=req_139a0e181fdd45adbf5c8ab3b8b63bba status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:13.452Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:13 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 311 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Unauthorized (401) req_d28bd12a9c65467891dfd7fc432a9894
+[network] Response succeeded req=req_d28bd12a9c65467891dfd7fc432a9894 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:13.799Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Accept: */*
+Content-Length: 23
+
+{"isMoveCommand":false}
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:13 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Forbidden (403) req_1aa7353f31284e06971c5e9853eeacb0
+[network] Response succeeded req=req_1aa7353f31284e06971c5e9853eeacb0 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:13.815Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 23
+
+{"isMoveCommand":false}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Conflict (409) req_fc5ebca5351d423b857033e6c648be85
+[network] Response succeeded req=req_fc5ebca5351d423b857033e6c648be85 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:14.360Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 96
+
+{"name":"TEST_NAME_1749188832884","isMoveCommand":false,"description":"TEST_DESC_1749188832884"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 90 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if the error message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Get All - OK (200) req_672c0d16cf6e4f819d8900dbad9925d9
+[network] Response succeeded req=req_672c0d16cf6e4f819d8900dbad9925d9 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:14.734Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 206 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created command
+
+Test: 5 passed, 5 total
+
+
+Running request: Get All Move - OK (200) req_4bdb9588281f44998842433ed01a69bd
+[network] Response succeeded req=req_4bdb9588281f44998842433ed01a69bd status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/move
+Current time is 2025-06-06T05:47:14.748Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/robot-commands/move HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 12 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects don't include the created command
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id - OK (200) req_691921d6a3b54cdb8e2bbf113b82fcd1
+[network] Response succeeded req=req_691921d6a3b54cdb8e2bbf113b82fcd1 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:14.760Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 204 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys
+✅ Check if the returned object is the created command
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id - Not Found (404) req_7a325ea2b3a641bea785b2b0738afb58
+[network] Response succeeded req=req_7a325ea2b3a641bea785b2b0738afb58 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/0
+Current time is 2025-06-06T05:47:14.778Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/robot-commands/0 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:14 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Update - OK (200) req_dba19fba7df34e8dbaf6afbc9e262262
+[network] Response succeeded req=req_dba19fba7df34e8dbaf6afbc9e262262 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:14.796Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 110
+
+{"name":"TEST_NAME_1749188834787_UPDATE","isMoveCommand":false,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:15 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 218 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid robotCommand
+✅ Check if the command's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Update - Bad Request (400) req_0e82738b6dda4870b4bb6213ffa3f8db
+[network] Response succeeded req=req_0e82738b6dda4870b4bb6213ffa3f8db status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:15.162Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:15 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 315 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Unauthorized (401) req_2dd013c1de394286ac676114e3e218c2
+[network] Response succeeded req=req_2dd013c1de394286ac676114e3e218c2 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:15.520Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Accept: */*
+Content-Length: 110
+
+{"name":"TEST_NAME_1749188834787_UPDATE","isMoveCommand":false,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:15 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Forbidden (403) req_6ef4c8370d04492e808e503fa59a8c8f
+[network] Response succeeded req=req_6ef4c8370d04492e808e503fa59a8c8f status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:15.530Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 110
+
+{"name":"TEST_NAME_1749188834787_UPDATE","isMoveCommand":false,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:15 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Not Found (404) req_af5ea06607714eba9bf1601d3ff717e1
+[network] Response succeeded req=req_af5ea06607714eba9bf1601d3ff717e1 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/0
+Current time is 2025-06-06T05:47:15.840Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 96
+
+{"name":"TEST_NAME_1749188835836","isMoveCommand":false,"description":"TEST_DESC_1749188835836"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:16 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Create Secondary - Created (201) req_1e829c5b5a8949d088b8dd877d5c3bfb
+[network] Response succeeded req=req_1e829c5b5a8949d088b8dd877d5c3bfb status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands
+Current time is 2025-06-06T05:47:16.140Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/robot-commands HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 116
+
+{"name":"TEST_NAME_SECONDARY_1749188836137","isMoveCommand":false,"description":"TEST_DESC_SECONDARY_1749188836137"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:16 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/robot-commands/12
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 224 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid robotCommand
+✅ Check if returned robotCommand has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Update - Conflict (409) req_6ce1f74771ac4c1080308a08fe65dc95
+[network] Response succeeded req=req_6ce1f74771ac4c1080308a08fe65dc95 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:16.460Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 113
+
+{"name":"TEST_NAME_SECONDARY_1749188836137","isMoveCommand":false,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:16 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 100 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if the error message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Modify - OK (200) req_a2ab2989675f4acb8b046f082c02a3ad
+[network] Response succeeded req=req_a2ab2989675f4acb8b046f082c02a3ad status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:16.785Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 22
+
+{"isMoveCommand":true}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:16 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 217 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid robotCommand
+✅ Check if the command's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Get All Move - OK (200) req_de5d76f4fb3441428643dce06ec9ff6a
+[network] Response succeeded req=req_de5d76f4fb3441428643dce06ec9ff6a status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/move
+Current time is 2025-06-06T05:47:17.082Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/robot-commands/move HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:16 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 219 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created command
+
+Test: 5 passed, 5 total
+
+
+Running request: Modify - Bad Request (400) req_1ff21476058f4d2bbc441a025c173a65
+[network] Response succeeded req=req_1ff21476058f4d2bbc441a025c173a65 status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:17.092Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:17 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 44 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Unauthorized (401) req_e13b28db387a4133af509a8566a19b63
+[network] Response succeeded req=req_e13b28db387a4133af509a8566a19b63 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:17.392Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Accept: */*
+Content-Length: 109
+
+{"name":"TEST_NAME_1749188834787_UPDATE","isMoveCommand":true,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:17 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Forbidden (403) req_112d9ab2fc79486da61b9a90bf85a21d
+[network] Response succeeded req=req_112d9ab2fc79486da61b9a90bf85a21d status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:17.400Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 109
+
+{"name":"TEST_NAME_1749188834787_UPDATE","isMoveCommand":true,"description":"TEST_DESC_1749188834787_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:17 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Not Found (404) req_ca390fcf75014950ba2921e7d2907cf8
+[network] Response succeeded req=req_ca390fcf75014950ba2921e7d2907cf8 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/0
+Current time is 2025-06-06T05:47:17.707Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 22
+
+{"isMoveCommand":true}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:17 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Modify - Conflict (409) req_957fde5d5298476ebc86dcad1a1f0684
+[network] Response succeeded req=req_957fde5d5298476ebc86dcad1a1f0684 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:18.012Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 44
+
+{"name":"TEST_NAME_SECONDARY_1749188836137"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:18 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 100 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if exception message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Delete Secondary - No Content (204) req_7e81d451432049e3af17e4a4547fa1ef
+[network] Response succeeded req=req_7e81d451432049e3af17e4a4547fa1ef status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/12
+Current time is 2025-06-06T05:47:18.320Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/robot-commands/12 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:18 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Unauthorized (401) req_8639d98b4f2e43d796be361ca9683447
+[network] Response succeeded req=req_8639d98b4f2e43d796be361ca9683447 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:18.616Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:18 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Forbidden (403) req_e420a604cf5e4805b1647a59b85965ea
+[network] Response succeeded req=req_e420a604cf5e4805b1647a59b85965ea status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:18.623Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:18 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Not Found (404) req_7fddca4d45264596ba613beaf38095eb
+[network] Response succeeded req=req_7fddca4d45264596ba613beaf38095eb status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/0
+Current time is 2025-06-06T05:47:18.933Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/robot-commands/0 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:19 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Delete - No Content (204) req_ed2095b34f8f41ee8e2455074b3c478d
+[network] Response succeeded req=req_ed2095b34f8f41ee8e2455074b3c478d status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/robot-commands/11
+Current time is 2025-06-06T05:47:19.229Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/robot-commands/11 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:19 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Created (201) req_73db9102c04441bfa88c8066e182c69a
+[network] Response succeeded req=req_73db9102c04441bfa88c8066e182c69a status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:19.525Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 57
+
+{"name":"TEST_NAME_1749188839521","columns":10,"rows":50}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:19 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/maps/11
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 201 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid map
+✅ Check if returned map has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Create - Bad Request (400) req_e04ba3b8c2534570b8dec174a52d1141
+[network] Response succeeded req=req_e04ba3b8c2534570b8dec174a52d1141 status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:19.833Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 303 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Unauthorized (401) req_20ada7342df945448c4cb6dd1c955eb6
+[network] Response succeeded req=req_20ada7342df945448c4cb6dd1c955eb6 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:20.137Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Accept: */*
+Content-Length: 57
+
+{"name":"TEST_NAME_1749188839521","columns":10,"rows":50}
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Forbidden (403) req_4c0e7e75a2ab46b899ef42ba44868930
+[network] Response succeeded req=req_4c0e7e75a2ab46b899ef42ba44868930 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:20.144Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 57
+
+{"name":"TEST_NAME_1749188839521","columns":10,"rows":50}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Conflict (409) req_13db780f0de943a7b231618404754cd9
+[network] Response succeeded req=req_13db780f0de943a7b231618404754cd9 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:20.445Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 57
+
+{"name":"TEST_NAME_1749188839521","columns":10,"rows":50}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 90 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if exception message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Get All - OK (200) req_e327d59837774b26873fe41389f66f99
+[network] Response succeeded req=req_e327d59837774b26873fe41389f66f99 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:20.744Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 203 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created map
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id - OK (200) req_6ed8ef9a102044faa36911adec36ab73
+[network] Response succeeded req=req_6ed8ef9a102044faa36911adec36ab73 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:20.752Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 201 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys
+✅ Check if returned objects include the created map
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id - Not Found (404) req_2fcf18e118f24c16ad1677e8adfea71f
+[network] Response succeeded req=req_2fcf18e118f24c16ad1677e8adfea71f status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/0
+Current time is 2025-06-06T05:47:20.760Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/0 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Get Square - OK (200) req_55844de19410400f8ec31b59226b56da
+[network] Response succeeded req=req_55844de19410400f8ec31b59226b56da status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/square
+Current time is 2025-06-06T05:47:20.771Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/square HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 12 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects don't include the created map
+
+Test: 5 passed, 5 total
+
+
+Running request: Get Coordinate (as Admin) - OK (200) req_b1a1e36b52844079bfdf76dac30de1e1
+[network] Response succeeded req=req_b1a1e36b52844079bfdf76dac30de1e1 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11/5-10
+Current time is 2025-06-06T05:47:20.778Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/11/5-10 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:20 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 14 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if response is correct value
+
+Test: 4 passed, 4 total
+
+
+Running request: Get Coordinate (as User) - OK (200) req_63083cc8543a4845a4f1aa34b014e9fb
+[network] Response succeeded req=req_63083cc8543a4845a4f1aa34b014e9fb status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11/5-10
+Current time is 2025-06-06T05:47:21.078Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/11/5-10 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:21 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 14 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if response is correct value
+
+Test: 4 passed, 4 total
+
+
+Running request: Get Coordinate - Unauthorized (401) req_0c0457dc066647d1bbd8273b6711df5f
+[network] Response succeeded req=req_0c0457dc066647d1bbd8273b6711df5f status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11/10-200
+Current time is 2025-06-06T05:47:21.376Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/11/10-200 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:21 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Get Coordinate - Not Found (404) req_0ec525e76dcf44c3a8d6ccad94357b58
+[network] Response succeeded req=req_0ec525e76dcf44c3a8d6ccad94357b58 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/0/10-200
+Current time is 2025-06-06T05:47:21.385Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/0/10-200 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:21 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Update - OK (200) req_cdec7292654f46faac82df5d2f6b5530
+[network] Response succeeded req=req_cdec7292654f46faac82df5d2f6b5530 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:21.685Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 65
+
+{"name":"TEST_NAME_1749188841681_UPDATE","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:21 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 209 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid map
+✅ Check if the map's modified date has changed and created date has remained the same
+✅ Check if returned map has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Update - Bad Request (400) req_2e5b6643a5864b4b9c8a68b841974f26
+[network] Response succeeded req=req_2e5b6643a5864b4b9c8a68b841974f26 status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:21.991Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:22 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 311 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Unauthorized (401) req_beaa11bc0a214158b030c560e92f4bc7
+[network] Response succeeded req=req_beaa11bc0a214158b030c560e92f4bc7 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:22.286Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Accept: */*
+Content-Length: 65
+
+{"name":"TEST_NAME_1749188841681_UPDATE","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:22 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Forbidden (403) req_5c45f2ae38a74fefaa8fec8d657b66cc
+[network] Response succeeded req=req_5c45f2ae38a74fefaa8fec8d657b66cc status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:22.294Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 65
+
+{"name":"TEST_NAME_1749188841681_UPDATE","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:22 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Not Found (404) req_fe680a73beeb4703b47e016fbf6547ef
+[network] Response succeeded req=req_fe680a73beeb4703b47e016fbf6547ef status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/0
+Current time is 2025-06-06T05:47:22.587Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 66
+
+{"name":"TEST_NAME_1749188841681_UPDATE ","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:22 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Create Secondary - Created (201) req_418b37756aec4d0d8262e276ecba959c
+[network] Response succeeded req=req_418b37756aec4d0d8262e276ecba959c status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps
+Current time is 2025-06-06T05:47:22.886Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/maps HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 68
+
+{"name":"TEST_NAME_SECONDARY_1749188842882","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:23 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/maps/12
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 212 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid map
+✅ Check if returned map has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Update - Conflict (409) req_aa5776a6d511452a8d6cb7304439008b
+[network] Response succeeded req=req_aa5776a6d511452a8d6cb7304439008b status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/17
+Current time is 2025-06-06T05:47:23.182Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/maps/17 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 68
+
+{"name":"TEST_NAME_SECONDARY_1749188842882","columns":20,"rows":100}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:23 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 100 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if exception message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Modify - OK (200) req_c522d00d30d947cb8765c3db8414f9fd
+[network] Response succeeded req=req_c522d00d30d947cb8765c3db8414f9fd status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:23.500Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 11
+
+{"rows":20}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:23 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 207 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid map
+✅ Check if the map's modified date has changed and created date has remained the same
+✅ Check if returned map has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Get Square - OK (200) req_a967f69aa49b4be4b78de1f5f5f714c2
+[network] Response succeeded req=req_a967f69aa49b4be4b78de1f5f5f714c2 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/square
+Current time is 2025-06-06T05:47:23.834Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/maps/square HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:23 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 209 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created map
+
+Test: 5 passed, 5 total
+
+
+Running request: Modify - Bad Request (400) req_dc9368ed1b904f60ab81eae583c1f0bb
+[network] Response succeeded req=req_dc9368ed1b904f60ab81eae583c1f0bb status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:23.845Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 44 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Unauthorized (401) req_0b61ef59317f4d0a93c89c17cd171618
+[network] Response succeeded req=req_0b61ef59317f4d0a93c89c17cd171618 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:24.154Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/11 HTTP/1.1
+Host: localhost:5152
+User-Agent: insomnia/11.0.2
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Forbidden (403) req_86980ce0bbc64f8fa8dd7da64c06b62c
+[network] Response succeeded req=req_86980ce0bbc64f8fa8dd7da64c06b62c status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:24.162Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 64
+
+{"name":"TEST_NAME_1749188841681_UPDATE","columns":20,"rows":20}
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Not Found (404) req_a8feafaf3b904a88962ce594d94c7617
+[network] Response succeeded req=req_a8feafaf3b904a88962ce594d94c7617 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/0
+Current time is 2025-06-06T05:47:24.494Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 65
+
+{"name":"TEST_NAME_1749188841681_UPDATE ","columns":20,"rows":20}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Modify - Conflict (409) req_a3eb315ae94940599d756b9df2ae3e64
+[network] Response succeeded req=req_a3eb315ae94940599d756b9df2ae3e64 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:24.789Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 44
+
+{"name":"TEST_NAME_SECONDARY_1749188842882"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 100 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if exception message specifies the correct name
+
+Test: 4 passed, 4 total
+
+
+Running request: Delete - Unauthorized (401) req_b3394bd6ad834b2ebe003b18986b967f
+[network] Response succeeded req=req_b3394bd6ad834b2ebe003b18986b967f status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:25.089Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:24 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Forbidden (403) req_547bc346624b439aaf26cca252834c15
+[network] Response succeeded req=req_547bc346624b439aaf26cca252834c15 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:25.097Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:25 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Not Found (404) req_417d7b6126714ba8ab09e4a9813f2948
+[network] Response succeeded req=req_417d7b6126714ba8ab09e4a9813f2948 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/0
+Current time is 2025-06-06T05:47:25.407Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/maps/0 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:25 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Delete - No Content (204) req_92dda500aaad4d7d87d8373d59524ffd
+[network] Response succeeded req=req_92dda500aaad4d7d87d8373d59524ffd status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/11
+Current time is 2025-06-06T05:47:25.725Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/maps/11 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:25 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete Secondary - No Content (204) req_abd4b85cd37043b5bb44ea4949066358
+[network] Response succeeded req=req_abd4b85cd37043b5bb44ea4949066358 status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/maps/12
+Current time is 2025-06-06T05:47:26.032Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/maps/12 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Created (201) req_219546d9e94c43d58d3eaf2fa2a2abc3
+[network] Response succeeded req=req_219546d9e94c43d58d3eaf2fa2a2abc3 status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.351Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 222
+
+{"email":"TEST_EMAIL_1749188846348","firstName":"TEST_FIRST_NAME_1749188846348","lastName":"TEST_LAST_NAME_1749188846348","description":"TEST_DESC_1749188846348","passwordHash":"TEST_PASS_HASH_1749188846348","role":"User"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/users/23
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 400 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if returned user has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Create - Bad Request (400) req_b18d1d36ff094198b3f49fc49c612cbc
+[network] Response succeeded req=req_b18d1d36ff094198b3f49fc49c612cbc status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.653Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 305 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Create - Conflict (409) req_048c5da489254631ba6ab04f4384b101
+[network] Response succeeded req=req_048c5da489254631ba6ab04f4384b101 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.662Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 222
+
+{"email":"TEST_EMAIL_1749188846348","firstName":"TEST_FIRST_NAME_1749188846348","lastName":"TEST_LAST_NAME_1749188846348","description":"TEST_DESC_1749188846348","passwordHash":"TEST_PASS_HASH_1749188846348","role":"User"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 89 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if the error message specifies the correct email
+
+Test: 4 passed, 4 total
+
+
+Running request: Get All - OK (200) req_87e9e7e554204a9f9c3852b310bd771a
+[network] Response succeeded req=req_87e9e7e554204a9f9c3852b310bd771a status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.673Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 1088 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created user
+
+Test: 5 passed, 5 total
+
+
+Running request: Get All - Unauthorized (401) req_0ce896f4f620456e98d106676a08f779
+[network] Response succeeded req=req_0ce896f4f620456e98d106676a08f779 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.968Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:26 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Get All - Forbidden (403) req_c7bcef66a531428baa370b508a5fec87
+[network] Response succeeded req=req_c7bcef66a531428baa370b508a5fec87 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:26.979Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:27 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Get All Admin - OK (200) req_b7392e2cf3774d5d8d2991eeba33ef50
+[network] Response succeeded req=req_b7392e2cf3774d5d8d2991eeba33ef50 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/admin
+Current time is 2025-06-06T05:47:27.268Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/admin HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:27 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 358 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects don't include the created user
+
+Test: 5 passed, 5 total
+
+
+Running request: Get All Admin - Unauthorized (401) req_b9e73b4d7bd349feb10428398a0414d3
+[network] Response succeeded req=req_b9e73b4d7bd349feb10428398a0414d3 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/admin
+Current time is 2025-06-06T05:47:27.566Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/admin HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:27 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Get All Admin - Forbidden (403) req_669ceb9420c641e29229012eb22622aa
+[network] Response succeeded req=req_669ceb9420c641e29229012eb22622aa status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/admin
+Current time is 2025-06-06T05:47:27.573Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/admin HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:27 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Get By Id (as Admin) - OK (200) req_cc7e5abdbcad4f7d9aae659b0467f696
+[network] Response succeeded req=req_cc7e5abdbcad4f7d9aae659b0467f696 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:27.902Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:28 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 400 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned object is the created user
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id (as Self) - OK (200) req_7ab72123bac640e884bcef150b11f58b
+[network] Response succeeded req=req_7ab72123bac640e884bcef150b11f58b status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:28.206Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic VEVTVF9FTUFJTF8xNzQ5MTg4ODQ2MzQ4OlRFU1RfUEFTU19IQVNIXzE3NDkxODg4NDYzNDg=
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:28 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 400 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned object is the created user
+
+Test: 5 passed, 5 total
+
+
+Running request: Get By Id - Unauthorized (401) req_f017f3d0c2f74b9b8b76dd54e1ad94fc
+[network] Response succeeded req=req_f017f3d0c2f74b9b8b76dd54e1ad94fc status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:28.502Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/23 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:28 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Get By Id - Forbidden (403) req_0043da30b934497b9f7ea9174e1065b6
+[network] Response succeeded req=req_0043da30b934497b9f7ea9174e1065b6 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:28.511Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:28 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Get By Id - Not Found (404) req_79cc6956bb60426f96f84c180b886338
+[network] Response succeeded req=req_79cc6956bb60426f96f84c180b886338 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/0
+Current time is 2025-06-06T05:47:28.811Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/0 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:28 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Update (as Admin) - OK (200) req_e6c540a7563c4eb0a8794199e0a9a25b
+[network] Response succeeded req=req_e6c540a7563c4eb0a8794199e0a9a25b status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:29.112Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 163
+
+{"firstName":"TEST_FIRST_NAME_1749188849109_UPDATE","lastName":"TEST_LAST_NAME_1749188849109_UPDATE","description":"TEST_DESC_1749188849109_UPDATE","role":"Admin"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:29 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 421 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if the user's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Get All Admin - OK (200) req_f93d9d16784d4de69ad7d320e871e1bd
+[network] Response succeeded req=req_f93d9d16784d4de69ad7d320e871e1bd status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/admin
+Current time is 2025-06-06T05:47:29.413Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+GET /api/users/admin HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:29 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 768 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned objects have correct keys
+✅ Check if returned objects include the created user
+
+Test: 5 passed, 5 total
+
+
+Running request: Update (as Self) - OK (200) req_84fc31237ba143d4a8c2601420f72104
+[network] Response succeeded req=req_84fc31237ba143d4a8c2601420f72104 status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:29.709Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic VEVTVF9FTUFJTF8xNzQ5MTg4ODQ2MzQ4OlRFU1RfUEFTU19IQVNIXzE3NDkxODg4NDYzNDg=
+Accept: */*
+Content-Length: 162
+
+{"firstName":"TEST_FIRST_NAME_1749188849705_UPDATE","lastName":"TEST_LAST_NAME_1749188849705_UPDATE","description":"TEST_DESC_1749188849705_UPDATE","role":"User"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:29 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 421 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if the user's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Update - Bad Request (400) req_3454326b272c417798a716cc8fa4f7b0
+[network] Response succeeded req=req_3454326b272c417798a716cc8fa4f7b0 status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:30.013Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:30 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 309 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Unauthorized (401) req_7e381a1e2bf64721ae6feb57f1a8453a
+[network] Response succeeded req=req_7e381a1e2bf64721ae6feb57f1a8453a status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:30.335Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/23 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:30 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Forbidden (403) req_29e0f3079e144ad391c704ae39ba0fca
+[network] Response succeeded req=req_29e0f3079e144ad391c704ae39ba0fca status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:30.347Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:30 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Update - Not Found (404) req_639afc4e78cc45ffa69e0f74c9685e20
+[network] Response succeeded req=req_639afc4e78cc45ffa69e0f74c9685e20 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/0
+Current time is 2025-06-06T05:47:30.639Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PUT /api/users/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 162
+
+{"firstName":"TEST_FIRST_NAME_1749188849705_UPDATE","lastName":"TEST_LAST_NAME_1749188849705_UPDATE","description":"TEST_DESC_1749188849705_UPDATE","role":"User"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:30 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Modify (as Admin) - OK (200) req_c28a45d01b2642ff9e154699edf5f84c
+[network] Response succeeded req=req_c28a45d01b2642ff9e154699edf5f84c status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:30.941Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 92
+
+{"email":"TEST_EMAIL_1749188850937_UPDATE","password":"TEST_PASS_HASH_1749188850937_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:31 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 428 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if the user's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Modify (as Self) - OK (200) req_f57417ed034240cbac48c3793415ea5e
+[network] Response succeeded req=req_f57417ed034240cbac48c3793415ea5e status=200
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+log: email: TEST_EMAIL_1749188850937_UPDATE, password: TEST_PASS_HASH_1749188850937_UPDATE
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:31.524Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic VEVTVF9FTUFJTF8xNzQ5MTg4ODUwOTM3X1VQREFURTpURVNUX1BBU1NfSEFTSF8xNzQ5MTg4ODUwOTM3X1VQREFURQ==
+Accept: */*
+Content-Length: 92
+
+{"email":"TEST_EMAIL_1749188851520_UPDATE","password":"TEST_PASS_HASH_1749188851520_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:31 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 428 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 200
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if the user's modified date has changed and created date has remained the same
+✅ Check if returned robotCommand has the correct values
+
+Test: 6 passed, 6 total
+
+
+Running request: Modify - Bad Request (400) req_6a97c2f30f964b4cb6174b3fbda19cfc
+[network] Response succeeded req=req_6a97c2f30f964b4cb6174b3fbda19cfc status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:32.128Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: text/plain; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:32 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 33 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Unauthorized (401) req_c27a796cef284368bbd0aa30f9dc629f
+[network] Response succeeded req=req_c27a796cef284368bbd0aa30f9dc629f status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:32.428Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+User-Agent: insomnia/11.0.2
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:32 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Forbidden (403) req_50c26760ef934d4da4e87039afdcfe91
+[network] Response succeeded req=req_50c26760ef934d4da4e87039afdcfe91 status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:32.438Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:32 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Modify - Not Found (404) req_1b55dc82ba76433ba9524e7d623f6675
+[network] Response succeeded req=req_1b55dc82ba76433ba9524e7d623f6675 status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/0
+Current time is 2025-06-06T05:47:32.737Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/0 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 92
+
+{"email":"TEST_EMAIL_1749188851520_UPDATE","password":"TEST_PASS_HASH_1749188851520_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:32 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Create Secondary - Created (201) req_cc74504d76a3418a8e177771edaadc19
+[network] Response succeeded req=req_cc74504d76a3418a8e177771edaadc19 status=201
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users
+Current time is 2025-06-06T05:47:33.036Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+POST /api/users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 250
+
+{"email":"TEST_EMAIL_1749188853032","firstName":"TEST_FIRST_NAME_1749188849705_UPDATE","lastName":"TEST_LAST_NAME_1749188849705_UPDATE","description":"TEST_DESC_1749188849705_UPDATE","passwordHash":"TEST_PASS_HASH_1749188851520_UPDATE","role":"User"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:33 GMT
+Server: Kestrel
+Location: http://localhost:5152/api/users/24
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 421 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has correct content-type
+✅ Check if status is 201
+✅ Check if returned object has correct keys and is a valid user
+✅ Check if returned user has the correct values
+
+Test: 5 passed, 5 total
+
+
+Running request: Modify - Conflict (409) req_738b24cfc8b144a894be6d8e57c0d091
+[network] Response succeeded req=req_738b24cfc8b144a894be6d8e57c0d091 status=409
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:33.331Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+PATCH /api/users/23 HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+User-Agent: insomnia/11.0.2
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 85
+
+{"email":"TEST_EMAIL_1749188853032","password":"TEST_PASS_HASH_1749188851520_UPDATE"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 409 Conflict
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:33 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 89 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 409
+✅ Check if the error message specifies the correct email
+
+Test: 4 passed, 4 total
+
+
+Running request: Delete Secondary - No Content (204) req_f4622ad785ce4928a667d33ab7c32a4e
+[network] Response succeeded req=req_f4622ad785ce4928a667d33ab7c32a4e status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/24
+Current time is 2025-06-06T05:47:33.623Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/24 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:33 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Unauthorized (401) req_289489a425b4442b869b450aa3fc2929
+[network] Response succeeded req=req_289489a425b4442b869b450aa3fc2929 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:33.918Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/23 HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:33 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Forbidden (403) req_916256d86d314b9e90071d026b30168b
+[network] Response succeeded req=req_916256d86d314b9e90071d026b30168b status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:33.925Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:34 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete - Not Found (404) req_2808a30ee1b44b5680ffb744cd68775a
+[network] Response succeeded req=req_2808a30ee1b44b5680ffb744cd68775a status=404
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/0
+Current time is 2025-06-06T05:47:34.233Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/0 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 404 Not Found
+Content-Type: application/json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:34 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 59 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Response has a message key
+✅ Check if status is 404
+
+Test: 3 passed, 3 total
+
+
+Running request: Delete - No Content (204) req_ce781a8d8e374fe2b7ec535ded0ac41a
+[network] Response succeeded req=req_ce781a8d8e374fe2b7ec535ded0ac41a status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/23
+Current time is 2025-06-06T05:47:34.529Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/23 HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:34 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 204
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete Test - Bad Request (400) req_9e150c2157824ad3b3b4cb31f8e08243
+[network] Response succeeded req=req_9e150c2157824ad3b3b4cb31f8e08243 status=400
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/cleanup-test-users
+Current time is 2025-06-06T05:47:34.830Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/cleanup-test-users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 400 Bad Request
+Content-Type: application/problem+json; charset=utf-8
+Date: Fri, 06 Jun 2025 05:47:34 GMT
+Server: Kestrel
+Transfer-Encoding: chunked
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Received 319 B chunk
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 400
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete Test - Unauthorized (401) req_8cac8502328b4c1885fe72ef5063f3d5
+[network] Response succeeded req=req_8cac8502328b4c1885fe72ef5063f3d5 status=401
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/cleanup-test-users
+Current time is 2025-06-06T05:47:35.136Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/cleanup-test-users HTTP/1.1
+Host: localhost:5152
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 401 Unauthorized
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:35 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 401
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete Test - Forbidden (403) req_22a035b620144f53830bb133a36bc09d
+[network] Response succeeded req=req_22a035b620144f53830bb133a36bc09d status=403
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/cleanup-test-users
+Current time is 2025-06-06T05:47:35.143Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/cleanup-test-users HTTP/1.1
+Host: localhost:5152
+Authorization: Basic dGVzdC11c2VyQGV4YW1wbGUuY29tOlRlc3RVc2VyMTIzIQ==
+Accept: */*
+Content-Length: 0
+
+Mark bundle as not supporting multiuse
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Date: Fri, 06 Jun 2025 05:47:35 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+
+
+Test results:
+✅ Response time is acceptable
+✅ Check if status is 403
+
+Test: 2 passed, 2 total
+
+
+Running request: Delete Test - Success (200) req_410df83a8fb64ef38276d354fe50976d
+[network] Response succeeded req=req_410df83a8fb64ef38276d354fe50976d status=204
+› log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: ✓ Test users already configured
+Preparing request to http://localhost:5152/api/users/cleanup-test-users
+Current time is 2025-06-06T05:47:35.440Z
+Enable automatic URL encoding
+Using default HTTP version
+Enable timeout of 30000ms
+Enable SSL validation
+Found bundle for host: 0x60000374c630 [serially]
+Can not multiplex, even if we wanted to
+Re-using existing connection #0 with host localhost
+Connected to localhost (127.0.0.1) port 5152 (#0)
+DELETE /api/users/cleanup-test-users HTTP/1.1
+Host: localhost:5152
+Content-Type: application/json
+Authorization: Basic dGVzdC1hZG1pbkBleGFtcGxlLmNvbTpUZXN0QWRtaW4xMjMh
+Accept: */*
+Content-Length: 75
+
+{"adminEmail":"test-admin@example.com","userEmail":"test-user@example.com"}
+Mark bundle as not supporting multiuse
+HTTP/1.1 204 No Content
+Date: Fri, 06 Jun 2025 05:47:35 GMT
+Server: Kestrel
+WWW-Authenticate: Basic realm="Access to the robot controller."
+
+Connection #0 to host localhost left intact
+log: warning: No environment is selected, modification of insomnia.environment will be applied to the base environment.
+warn: The URL contains tags or no matched certificate found, insomnia.request.certificate is initialized as an empty certificate.
+log: 🧹 Environment variables cleared
+
+
+Test results:
+✅ Response time is acceptable
+
+Test: 1 passed, 1 total
+
+
+
+Test Requests: 98 passed, 98 total
+Tests:         317 passed, 317 total
+
